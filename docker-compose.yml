@@ -1,0 +1,17 @@
+# Levantar todo con un solo comando:  docker compose up --build
+# Requiere un archivo .env con MONGODB_URI, GROQ_API_KEY y GITHUB_REPO.
+services:
+  app:
+    build:
+      context: .
+      args:
+        EMBEDDING_MODEL: intfloat/multilingual-e5-small
+    image: rag-duoc-groq:latest
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      # Poner "true" para que el contenedor cree el índice e ingeste al arrancar.
+      INIT_ON_START: "${INIT_ON_START:-false}"
+    restart: unless-stopped

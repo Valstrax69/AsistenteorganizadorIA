@@ -1,0 +1,12 @@
+# Tema corporativo claro con acentos azules (evita el look oscuro/lúgubre).
+[theme]
+base = "light"
+primaryColor = "#2563EB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F5F9"
+textColor = "#0F172A"
+font = "sans serif"
+
+[client]
+# Sin barra lateral: la ocultamos por defecto.
+showSidebarNavigation = false

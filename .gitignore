@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Entorno (NUNCA subir credenciales)
+.env
+
+# Resultados de evaluación
+evaluation/results.json
+
+# Caché de modelos de HuggingFace / torch
+.cache/
+hf_cache/
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store

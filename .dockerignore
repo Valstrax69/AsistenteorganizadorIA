@@ -1,0 +1,26 @@
+# Secretos y entornos locales (NUNCA dentro de la imagen)
+.env
+.env.*
+.venv/
+venv/
+
+# Control de versiones y CI
+.git/
+.github/
+
+# Caché de Python / HuggingFace / resultados
+__pycache__/
+*.py[cod]
+*.egg-info/
+.cache/
+hf_cache/
+evaluation/results.json
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store
+
+# Documentación (no necesaria en runtime). OJO: NO excluir data/*.md (material).
+docs/
+/README.md

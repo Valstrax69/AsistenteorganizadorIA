@@ -1,0 +1,17 @@
+# --- Núcleo de la app (runtime) ---
+# Nota: las versiones están fijadas para reproducibilidad; ajústalas si tu
+# entorno lo requiere.
+streamlit==1.39.0
+groq==0.11.0
+# groq 0.11 pasa proxies= a httpx, removido en httpx>=0.28; se fija compatible.
+httpx==0.27.2
+pymongo[srv]==4.9.1
+requests==2.32.3
+python-dotenv==1.0.1
+
+# Embeddings locales (arrastra torch). En Docker se instala la variante CPU.
+sentence-transformers==3.3.1
+
+# Fuente externa: búsqueda web sin API key (paquete 'ddgs', antes
+# 'duckduckgo_search'). El código es fail-soft si no está o no hay red.
+ddgs==9.0.0

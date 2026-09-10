@@ -1,0 +1,8 @@
+# --- Dependencias SÓLO para la evaluación (evaluation/run_eval.py) ---
+# Pesadas y opcionales: la app corre sin esto. Versiones aproximadas; RAGAS
+# cambia de API entre versiones, así que puede requerir ajuste.
+-r requirements.txt
+ragas==0.2.10
+langchain-groq==0.2.1
+langchain-core==0.3.15
+datasets==3.0.1

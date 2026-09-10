@@ -1,0 +1,5 @@
+# Forzar saltos de línea LF en scripts de shell: si el repo se clona en
+# Windows, evita que un CRLF rompa entrypoint.sh dentro del contenedor Linux.
+*.sh text eol=lf
+entrypoint.sh text eol=lf
+Dockerfile text eol=lf

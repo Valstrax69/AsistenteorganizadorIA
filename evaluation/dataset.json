@@ -1,0 +1,22 @@
+[
+  {
+    "pregunta": "¿Qué es un sistema RAG y qué problema resuelve?",
+    "referencia": "Un sistema RAG (Retrieval-Augmented Generation) combina la recuperación de información relevante desde una base de conocimiento externa con la generación de un modelo de lenguaje, de modo que las respuestas se fundamentan en documentos reales y se reduce la alucinación."
+  },
+  {
+    "pregunta": "¿Por qué se dividen los documentos en chunks antes de indexarlos?",
+    "referencia": "Los documentos se dividen en chunks para poder generar embeddings de fragmentos acotados, mejorar la precisión del retrieval y ajustarse a los límites de contexto del modelo; el solapamiento evita perder información en los bordes."
+  },
+  {
+    "pregunta": "¿Qué rol cumple la base de datos vectorial en el pipeline?",
+    "referencia": "La base de datos vectorial almacena los embeddings de los chunks y permite hacer búsqueda por similitud para recuperar los fragmentos más cercanos a la consulta del usuario."
+  },
+  {
+    "pregunta": "¿Qué significa que una respuesta sea 'faithful' respecto al contexto?",
+    "referencia": "Faithfulness mide cuánto de la respuesta está efectivamente respaldado por el contexto recuperado, penalizando afirmaciones que el modelo agrega por su cuenta sin sustento en las fuentes."
+  },
+  {
+    "pregunta": "¿Cómo se calcula el costo de una interacción en este proyecto?",
+    "referencia": "El costo se calcula a partir de los tokens de entrada y salida devueltos por la API del LLM (Groq) multiplicados por la tarifa del modelo; los embeddings son locales, por lo que no agregan costo."
+  }
+]
