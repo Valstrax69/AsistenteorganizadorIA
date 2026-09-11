@@ -1,7 +1,7 @@
 # RAG DuocUC · Groq
 
 Chatbot RAG para el ramo **Ingeniería de Soluciones con Inteligencia Artificial** (DuocUC).
-Responde preguntas de estudiantes usando el material del curso (PDFs) como fuente.
+Responde preguntas de estudiantes de Duoc UC usando material institucional en Markdown (carpeta `data/`) y una fuente externa de búsqueda web. Incluye además un panel de herramientas académicas.
 
 Variante propia: LLM servido por **Groq** y **embeddings locales** (sin API de embeddings).
 
@@ -9,7 +9,7 @@ Variante propia: LLM servido por **Groq** y **embeddings locales** (sin API de e
 
 | Componente | Tecnología |
 |-----------|-----------|
-| LLM | Groq · `qwen/qwen3.6-27b` (SDK `groq`) |
+| LLM | Groq — configurable vía `GROQ_MODEL` (actual: `groq/compound-mini`) |
 | Embeddings | `intfloat/multilingual-e5-small` (local, 384 dims) |
 | Vector DB | MongoDB Atlas (Vector Search) |
 | UI | Streamlit |
@@ -31,6 +31,18 @@ docs/           architecture.md
 
 Toda la configuración vive en `rag/config.py` (leída desde variables de entorno);
 no se hardcodean modelos ni credenciales en el resto del código.
+
+## Herramientas académicas
+
+Además del chat RAG, la interfaz incluye un panel de herramientas (componente HTML/JS con estado en el navegador):
+
+- Clases del día + próximas pruebas y calendario del mes.
+- Calculadora de calificaciones y ponderaciones (escala 1–7).
+- Control de asistencia y margen de faltas por ramo.
+- Temporizador Pomodoro con modo enfoque.
+- Adjuntar PDF → resumen y puntos clave.
+- Notas adhesivas arrastrables.
+- Gestor de trabajos grupales estilo tablero Kanban.
 
 ## Puesta en marcha
 
@@ -87,12 +99,11 @@ arquitectura (`docs/architecture.md`), secretos vía GitHub Secrets, ambientes
 `dev`/`qa`/`main` mapeados a bases de datos separadas, **fuentes internas + externa
 (búsqueda web)** y **contexto conversacional** (historial enviado al LLM).
 
-## Pendiente por tu parte (Valstrax)
+## Notas de configuración
 
-- Revisar MongoDB Atlas (cluster, usuario, `MONGODB_URI`) y la API key de Groq.
-- **Confirmar el ID exacto del modelo en Groq**: `qwen/qwen3.8-27b` no existe en el
-  catálogo; el default quedó en `qwen/qwen3.6-27b`. Ajusta `GROQ_MODEL` si corresponde.
-- Verificar las tarifas en `rag/costs.py` contra el pricing vigente de Groq.
+- El modelo se define en `GROQ_MODEL`. Se usa un modelo **no-razonador** (`groq/compound-mini`): los modelos de razonamiento (familia qwen3) consumen el presupuesto de tokens del nivel gratuito y truncan la respuesta.
+- Para la búsqueda vectorial, la IP debe estar habilitada en el *Network Access* de MongoDB Atlas.
+- Las tarifas de referencia en `rag/costs.py` deben verificarse contra el pricing vigente de Groq.
 
 
 ## Docker (para la entrega)

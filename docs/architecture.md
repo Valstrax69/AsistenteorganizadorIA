@@ -19,7 +19,7 @@ flowchart TD
         D -->|top-k chunks internos| G
         G -->|fuente externa| W[external.py<br/>búsqueda web]
         W -->|resultados externos| G
-        G -->|system + historial<br/>+ contexto interno/externo| L[Groq<br/>qwen3.6-27b]
+        G -->|system + historial<br/>+ contexto interno/externo| L[Groq<br/>compound-mini]
         L -->|respuesta| G
         G --> APP
         APP -->|respuesta + fuentes internas/externas| U
@@ -44,7 +44,7 @@ flowchart TD
 
 | Aspecto | Esta versión | Por qué |
 |---------|--------------|---------|
-| LLM | Groq (`qwen/qwen3.6-27b`), SDK oficial `groq` | Se dispone de key de Groq; se maneja el modo *reasoning* de qwen3. |
+| LLM | Groq (`groq/compound-mini`, configurable en `GROQ_MODEL`) | Modelo no-razonador que responde limpio y hace búsqueda web propia; los qwen3 truncaban en free tier. |
 | Embeddings | Locales `multilingual-e5-small` (384 dims) | Groq no ofrece embeddings; local = sin key y sin costo por token. Multilingüe por el corpus en español. |
 | Costo | Sólo generación (Groq); embeddings = $0 | Consecuencia directa de usar embeddings locales. |
 | Índice Atlas | 384 dims (`config.EMBEDDING_DIM`) | Debe calzar con el modelo de embeddings; parametrizado, no hardcodeado. |
@@ -64,3 +64,7 @@ Cada ambiente usa su propia base dentro del mismo cluster de Atlas. Lo controla 
 ## Secretos
 
 Local: archivo `.env` (ver `.env.example`), ignorado por git. CI/CD: GitHub Secrets inyectados como env vars en `ci.yml`. Nunca se commitean credenciales.
+
+## Herramientas académicas
+
+La UI (Streamlit) suma un panel de herramientas (componente HTML/JS, estado en `localStorage`): clases del día, calendario, calculadora de notas, asistencia, Pomodoro, adjuntar PDF → resumen, notas arrastrables y tablero Kanban de trabajos grupales.

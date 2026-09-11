@@ -60,7 +60,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 # Modelo NO de razonamiento (no emite <think>), apto para free tier. Los qwen3
 # razonan en voz alta y en free tier truncan antes de responder. IDs válidos
 # en https://console.groq.com/docs/models
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "groq/compound-mini")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.3"))
 LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "512"))
 

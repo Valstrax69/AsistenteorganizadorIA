@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{
+  --c1:#2563EB; --c2:#4F46E5; --c3:#0EA5A4; --c4:#7C3AED; --c5:#F59E0B; --c6:#F43F5E;
+  --ink:#0f172a; --s700:#334155; --s500:#64748b; --s300:#cbd5e1; --s200:#e2e8f0; --s100:#f1f5f9;
+  --sh:0 4px 16px rgba(2,6,23,.09); --shlg:0 14px 34px rgba(2,6,23,.14); --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:transparent;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink)}
+.wrap{padding:2px}
+.card{
+  background:#fff;border:1px solid var(--s200);border-radius:var(--r);box-shadow:var(--sh);
+  padding:.9rem 1rem;margin-bottom:.9rem;position:relative;overflow:hidden;
+  animation:rise .3s ease both;transition:box-shadow .2s ease,transform .2s ease;
+}
+.card:hover{box-shadow:var(--shlg)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--ac,var(--c1))}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h3{margin:.1rem 0 .6rem;font-size:.98rem;color:var(--ink);display:flex;align-items:center;gap:.4rem}
+h3 .dot{width:.6rem;height:.6rem;border-radius:50%;background:var(--ac,var(--c1))}
+.muted{color:var(--s500);font-size:.78rem}
+.row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
+label{font-size:.75rem;color:var(--s700);font-weight:600}
+input,select,textarea{border:1px solid var(--s300);border-radius:10px;padding:.4rem .55rem;font-size:.82rem;font-family:inherit;background:#fff;transition:border .15s,box-shadow .15s;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ac,var(--c1));box-shadow:0 0 0 3px color-mix(in srgb,var(--ac,var(--c1)) 22%,transparent)}
+.btn{border:0;border-radius:10px;background:var(--ac,var(--c1));color:#fff;font-weight:600;padding:.4rem .7rem;cursor:pointer;font-size:.8rem;transition:filter .15s,transform .15s,box-shadow .15s;box-shadow:0 1px 2px rgba(2,6,23,.08)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:var(--sh)}
+.btn.ghost{background:#fff;color:var(--s700);border:1px solid var(--s300)}
+.btn.mini{padding:.22rem .5rem;font-size:.72rem;border-radius:8px}
+.btn.x{background:var(--c6)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th,td{padding:.35rem .4rem;border-bottom:1px solid var(--s100);text-align:left}
+th{color:var(--s500);font-weight:600}
+.pill{display:inline-block;padding:.1rem .5rem;border-radius:999px;font-size:.68rem;font-weight:700}
+.pill.ok{background:#dcfce7;color:#166534}.pill.warn{background:#fef3c7;color:#92400e}.pill.bad{background:#ffe4e6;color:#9f1239}
+.stat{font-size:1.7rem;font-weight:800;line-height:1}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--s200),transparent);margin:.6rem 0}
+/* Calendario */
+.cal{width:100%;border-collapse:collapse}.cal th{color:var(--s500);font-size:.66rem;text-align:center;padding:.15rem 0}
+.cal td{text-align:center;padding:.25rem 0;border:0}.cal .d{display:inline-flex;width:1.9rem;height:1.9rem;align-items:center;justify-content:center;border-radius:9px;font-size:.8rem;transition:.15s}
+.cal .d:hover{background:var(--s100)}.cal td.hoy .d{background:linear-gradient(135deg,var(--c2),var(--c1));color:#fff;font-weight:700}
+.cal td.prueba .d{box-shadow:inset 0 -3px 0 var(--c5);font-weight:700}
+@media(max-width:420px){.cal .d{width:1.5rem;height:1.5rem;font-size:.72rem}}
+/* Pomodoro */
+.ring{--p:0;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;margin:.3rem auto;background:conic-gradient(var(--c6) calc(var(--p)*1%),var(--s200) 0);transition:background .5s linear}
+.ring .in{width:124px;height:124px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--sh)}
+.ring .t{font-size:1.9rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+/* Notas */
+#nl{position:relative;min-height:230px;border:1px dashed var(--s300);border-radius:12px;background:repeating-linear-gradient(45deg,#00000005 0 10px,transparent 10px 20px);overflow:hidden}
+.note{position:absolute;width:150px;min-height:78px;background:#fff7cc;border:1px solid #f0dd8f;border-radius:10px;box-shadow:var(--sh);padding:.4rem;cursor:grab;transition:box-shadow .15s}
+.note.drag{cursor:grabbing;box-shadow:var(--shlg);z-index:9}
+.note textarea{width:100%;border:0;background:transparent;resize:none;font-size:.76rem;min-height:52px}.note textarea:focus{outline:none}
+.note .x{position:absolute;top:1px;right:5px;cursor:pointer;color:#a16207;font-weight:700}
+/* Kanban */
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+@media(max-width:720px){.board{grid-template-columns:1fr}}
+.col{background:var(--s100);border:1px solid var(--s200);border-radius:14px;padding:.6rem;min-height:180px;transition:background .15s}
+.col.over{background:color-mix(in srgb,var(--ac) 12%,#fff)}
+.col h4{margin:.1rem 0 .5rem;font-size:.82rem;display:flex;align-items:center;gap:.4rem}
+.col h4 .dot{width:.6rem;height:.6rem;border-radius:50%}
+.kc{background:#fff;border:1px solid var(--s200);border-left:4px solid var(--ac);border-radius:10px;padding:.45rem .55rem;margin-bottom:.5rem;cursor:grab;box-shadow:0 1px 2px rgba(2,6,23,.06);transition:transform .12s,box-shadow .12s}
+.kc:hover{transform:translateY(-1px);box-shadow:var(--sh)}.kc.drag{opacity:.5}
+.kc .tt{font-weight:600;font-size:.82rem}.kc .mt{font-size:.7rem;color:var(--s500);margin-top:.15rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.tag{background:color-mix(in srgb,var(--ac) 16%,#fff);color:var(--ink);border-radius:999px;padding:0 .45rem}
+.list{margin:.2rem 0;padding:0;list-style:none}.list li{display:flex;gap:.4rem;align-items:center;padding:.28rem 0;border-bottom:1px solid var(--s100);font-size:.8rem}
+.drop{border:1px dashed var(--s300);border-radius:10px;padding:.6rem;text-align:center;color:var(--s500);font-size:.8rem;transition:.15s;cursor:pointer}
+.drop.over{border-color:var(--c5);background:#fffbeb;color:var(--c5)}
+</style>
+</head>
+<body>
+<div class="wrap"><div id="root"></div></div>
+<script>
+const PANELS = __PANELS__;
+const KEY="duoc_tools_v2";
+const DEF={horario:[{dia:1,ramo:"Programación",ini:"08:30",fin:"10:00",sala:"L-3"}],pruebas:[],
+  calif:[{n:"",p:""}],asist:[{r:"Ramo 1",tot:16,fal:0,min:75}],pomo:{work:25,brk:5,ciclos:0},
+  notas:[{t:"Arrástrame ✏️",x:14,y:14}],
+  kanban:[{id:1,t:"Definir tema del informe",ramo:"Proyecto",who:"Yo",st:"todo"},
+          {id:2,t:"Armar diagrama",ramo:"Proyecto",who:"Iván",st:"doing"}]};
+let S=load();
+function load(){try{return Object.assign(JSON.parse(JSON.stringify(DEF)),JSON.parse(localStorage.getItem(KEY))||{})}catch(e){return JSON.parse(JSON.stringify(DEF))}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s), esc=s=>(s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const DIAS=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const MESES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const diasHasta=f=>{const d=new Date(f+"T00:00"),t=new Date();t.setHours(0,0,0,0);return Math.round((d-t)/864e5)};
+
+const META={
+ clases:{ac:"var(--c1)",t:"📚 Clases del día"}, calendario:{ac:"var(--c2)",t:"📅 Calendario"},
+ calif:{ac:"var(--c3)",t:"🧮 Notas y ponderaciones"}, asistencia:{ac:"var(--c4)",t:"✅ Asistencia"},
+ pomodoro:{ac:"var(--c6)",t:"⏳ Pomodoro"}, pdf:{ac:"var(--c5)",t:"📎 PDF → resumen"},
+ notas:{ac:"var(--c5)",t:"🗒️ Notas"}, kanban:{ac:"var(--c1)",t:"👥 Trabajos grupales"}
+};
+function build(){
+  const root=$("#root");root.innerHTML="";
+  PANELS.forEach(id=>{const m=META[id];const c=document.createElement("div");
+    c.className="card";c.style.setProperty("--ac",m.ac);c.id="card-"+id;
+    c.innerHTML=`<h3><span class="dot"></span>${m.t}</h3><div class="body" id="body-${id}"></div>`;
+    root.appendChild(c);R[id]&&R[id]();});
+}
+const B=id=>document.querySelector("#body-"+id);
+const R={};
+
+// clases
+R.clases=()=>{const hoy=new Date().getDay();
+ const dh=S.horario.filter(h=>+h.dia===hoy).sort((a,b)=>a.ini.localeCompare(b.ini));
+ const px=[...S.pruebas].filter(p=>p.fecha).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+ B("clases").innerHTML=`${dh.length?`<table><tr><th>Hora</th><th>Ramo</th><th>Sala</th></tr>${dh.map(h=>`<tr><td>${h.ini}</td><td>${esc(h.ramo)}</td><td>${esc(h.sala||"")}</td></tr>`).join("")}</table>`:'<p class="muted">Sin clases hoy.</p>'}
+  <div class="divider"></div><div class="muted">Agregar al horario</div>
+  <div class="row"><select id="hd">${DIAS.map((d,i)=>i>=1&&i<=6?`<option value="${i}">${d.slice(0,3)}</option>`:"").join("")}</select>
+   <input id="hr" placeholder="Ramo" style="flex:1"><input id="hi" type="time" value="08:30" style="width:96px"><input id="hs" placeholder="Sala" style="width:60px"><button class="btn mini" onclick="addH()">+</button></div>
+  <div class="divider"></div><div class="muted">Próximas pruebas</div>
+  <div class="row"><input id="pr" placeholder="Ramo" style="flex:1"><input id="pf" type="date"><button class="btn mini" onclick="addP()">+</button></div>
+  ${px.map((p,i)=>{const d=diasHasta(p.fecha);return `<div class="row" style="justify-content:space-between"><span>${esc(p.ramo)} · ${p.fecha}</span><span><span class="pill ${d<=3?'bad':d<=7?'warn':'ok'}">${d>=0?'en '+d+'d':'pasó'}</span> <button class="btn x mini" onclick="delP(${i})">✕</button></span></div>`}).join("")}`;
+};
+window.addH=()=>{S.horario.push({dia:+$("#hd").value,ramo:$("#hr").value||"Ramo",ini:$("#hi").value,fin:"",sala:$("#hs").value});save();R.clases();sync()};
+window.addP=()=>{if(!$("#pf").value)return;S.pruebas.push({ramo:$("#pr").value||"Ramo",fecha:$("#pf").value});save();R.clases();sync()};
+window.delP=i=>{S.pruebas.splice(i,1);save();R.clases();sync()};
+
+// calendario
+R.calendario=()=>{const now=new Date(),y=now.getFullYear(),m=now.getMonth(),hoy=now.getDate();
+ const first=(new Date(y,m,1).getDay()+6)%7,dim=new Date(y,m+1,0).getDate(),mk={};
+ S.pruebas.forEach(p=>{const d=new Date(p.fecha+"T00:00");if(d.getMonth()===m&&d.getFullYear()===y)mk[d.getDate()]=p.ramo});
+ let c="";for(let i=0;i<first;i++)c+="<td></td>";
+ for(let d=1;d<=dim;d++){c+=`<td class="${d===hoy?'hoy ':''}${mk[d]?'prueba':''}" title="${mk[d]?'Prueba: '+esc(mk[d]):''}"><span class="d">${d}</span></td>`;if((first+d)%7===0)c+="</tr><tr>";}
+ B("calendario").innerHTML=`<div class="muted" style="text-align:center;font-weight:700;color:var(--c2)">${MESES[m]} ${y}</div>
+  <table class="cal"><tr>${["Lu","Ma","Mi","Ju","Vi","Sá","Do"].map(x=>`<th>${x}</th>`).join("")}</tr><tr>${c}</tr></table>
+  <div class="muted" style="margin-top:.3rem">Hoy en azul · barra ámbar = día con prueba.</div>`;
+};
+
+// calificaciones
+R.calif=()=>{const rows=S.calif.map((r,i)=>`<tr><td><input type="number" step="0.1" min="1" max="7" value="${r.n}" oninput="setC(${i},'n',this.value)" style="width:64px"></td><td><input type="number" value="${r.p}" oninput="setC(${i},'p',this.value)" style="width:60px"> %</td><td><button class="btn x mini" onclick="delC(${i})">✕</button></td></tr>`).join("");
+ const sp=S.calif.reduce((a,r)=>a+(+r.p||0),0),prom=sp>0?S.calif.reduce((a,r)=>a+(+r.n||0)*(+r.p||0),0)/sp:0,falta=100-sp;let msg="";
+ if(falta>0.01){const need=(400-prom*sp)/falta;msg=`Falta ${falta}% por ponderar. Para 4.0 necesitas <b>${need>7?'>7 (difícil)':need<1?'≤1':need.toFixed(1)}</b> en lo que resta.`;}
+ else if(Math.abs(sp-100)<.01)msg="Ponderación completa (100%).";else msg=`⚠️ Suma ${sp}% (>100%).`;
+ B("calif").innerHTML=`<table><tr><th>Nota</th><th>Pond.</th><th></th></tr>${rows}</table>
+  <div class="row"><button class="btn ghost mini" onclick="addCa()">+ fila</button></div><div class="divider"></div>
+  <div class="muted">Promedio ponderado</div><div class="stat" style="color:${prom>=4?'#16a34a':'var(--c6)'}">${prom.toFixed(2)}</div><p class="muted">${msg}</p>`;
+};
+window.setC=(i,k,v)=>{S.calif[i][k]=v;save();R.calif()};window.addCa=()=>{S.calif.push({n:"",p:""});save();R.calif()};
+window.delC=i=>{S.calif.splice(i,1);if(!S.calif.length)S.calif.push({n:"",p:""});save();R.calif()};
+
+// asistencia
+R.asistencia=()=>{const rows=S.asist.map((a,i)=>{const as=a.tot>0?(a.tot-a.fal)/a.tot*100:0,mx=Math.floor(a.tot*(1-a.min/100)),rest=mx-a.fal,st=as>=a.min?(rest<=1?'warn':'ok'):'bad';
+  return `<tr><td><input value="${esc(a.r)}" oninput="setA(${i},'r',this.value)" style="width:88px"></td><td><input type="number" value="${a.tot}" oninput="setA(${i},'tot',this.value)" style="width:48px"></td><td><input type="number" value="${a.fal}" oninput="setA(${i},'fal',this.value)" style="width:48px"></td><td><b>${as.toFixed(0)}%</b></td><td><span class="pill ${st}">${rest>=0?rest+' más':'excedido'}</span></td><td><button class="btn x mini" onclick="delAs(${i})">✕</button></td></tr>`}).join("");
+ B("asistencia").innerHTML=`<table><tr><th>Ramo</th><th>Cls</th><th>Falt</th><th>%</th><th>Margen</th><th></th></tr>${rows}</table>
+  <div class="row"><button class="btn ghost mini" onclick="addAs()">+ ramo</button><span class="muted">mín. asistencia por defecto 75%</span></div>`;
+};
+window.setA=(i,k,v)=>{S.asist[i][k]=k==='r'?v:(+v||0);save();R.asistencia()};window.addAs=()=>{S.asist.push({r:"Nuevo",tot:16,fal:0,min:75});save();R.asistencia()};window.delAs=i=>{S.asist.splice(i,1);save();R.asistencia()};
+
+// pomodoro
+let pv={left:0,timer:null,fase:"work",run:false};
+R.pomodoro=()=>{if(!pv.left)pv.left=S.pomo.work*60;
+ B("pomodoro").innerHTML=`<div class="ring" id="ring"><div class="in"><div class="t" id="pt">25:00</div></div></div>
+  <div class="row" style="justify-content:center"><button class="btn" id="ps" onclick="pStart()">Iniciar</button><button class="btn ghost" onclick="pReset()">Reiniciar</button></div>
+  <div class="row" style="justify-content:center"><label>Trab <input type="number" value="${S.pomo.work}" style="width:48px" onchange="S.pomo.work=+this.value;save();pReset()"></label><label>Desc <input type="number" value="${S.pomo.brk}" style="width:48px" onchange="S.pomo.brk=+this.value;save()"></label></div>
+  <div class="muted" style="text-align:center">Ciclos: <b>${S.pomo.ciclos}</b> · <b>${pv.fase==='work'?'Trabajo':'Descanso'}</b></div>`;pPaint();};
+function pPaint(){const tot=(pv.fase==="work"?S.pomo.work:S.pomo.brk)*60,r=$("#ring"),t=$("#pt");if(r)r.style.setProperty("--p",100-pv.left/tot*100);if(t)t.textContent=`${String(Math.floor(pv.left/60)).padStart(2,"0")}:${String(pv.left%60).padStart(2,"0")}`;}
+window.pStart=()=>{if(pv.run){pv.run=false;clearInterval(pv.timer);$("#ps").textContent="Iniciar";return;}pv.run=true;$("#ps").textContent="Pausar";
+ pv.timer=setInterval(()=>{pv.left--;if(pv.left<=0){clearInterval(pv.timer);pv.run=false;if(pv.fase==="work"){S.pomo.ciclos++;save();pv.fase="brk";pv.left=S.pomo.brk*60;}else{pv.fase="work";pv.left=S.pomo.work*60;}R.pomodoro();}else pPaint();},1000);};
+window.pReset=()=>{clearInterval(pv.timer);pv.run=false;pv.fase="work";pv.left=S.pomo.work*60;R.pomodoro();};
+
+// pdf -> resumen
+R.pdf=()=>{B("pdf").innerHTML=`<p class="muted">Adjunta un PDF (apunte, guía, enunciado) y obtén un resumen con los puntos clave.</p>
+ <div class="drop" id="drop">📎 Arrastra un PDF aquí o haz clic para elegirlo</div>
+ <input type="file" id="pf2" accept="application/pdf" style="display:none">
+ <div class="row"><label>Nº de ideas <input id="pk" type="number" value="6" style="width:48px"></label></div>
+ <div id="pout"></div>`;
+ const drop=$("#drop"),inp=$("#pf2");
+ drop.onclick=()=>inp.click();
+ inp.onchange=e=>e.target.files[0]&&leerPDF(e.target.files[0]);
+ ["dragover","dragenter"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("over")}));
+ ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("over")}));
+ drop.addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f)leerPDF(f)});
+};
+async function leerPDF(file){const out=$("#pout");out.innerHTML='<p class="muted">Leyendo PDF…</p>';
+ try{
+  if(!window.pdfjsLib){out.innerHTML='<p class="muted">No se pudo cargar el lector de PDF (¿sin internet?).</p>';return;}
+  pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  const buf=await file.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;let txt="";
+  for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i);const c=await pg.getTextContent();txt+=c.items.map(it=>it.str).join(" ")+"\n";}
+  resumirTxt(txt,file.name);
+ }catch(err){out.innerHTML=`<p class="muted">No se pudo leer: ${esc(err.message||err)}</p>`;}
+}
+function resumirTxt(txt,nombre){const k=+$("#pk").value||6;const fr=txt.replace(/\s+/g," ").match(/[^.!?]+[.!?]+/g)||[txt];
+ const freq={};txt.toLowerCase().match(/[a-záéíóúñü]{4,}/g)?.forEach(w=>freq[w]=(freq[w]||0)+1);
+ const sc=s=>(s.toLowerCase().match(/[a-záéíóúñü]{4,}/g)||[]).reduce((a,w)=>a+(freq[w]||0),0)/Math.sqrt(s.length+1);
+ const top=fr.map((s,i)=>({s:s.trim(),i,v:sc(s)})).sort((a,b)=>b.v-a.v).slice(0,k).sort((a,b)=>a.i-b.i);
+ const pal=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0]);
+ $("#pout").innerHTML=`<div class="divider"></div><div class="muted">${esc(nombre)} · ${fr.length} oraciones · ${txt.split(/\s+/).length} palabras</div>
+  <b>Puntos clave</b><ul class="list">${top.map(o=>`<li>• ${esc(o.s)}</li>`).join("")}</ul>
+  <div class="muted">Términos frecuentes: ${pal.map(p=>`<span class="tag" style="--ac:var(--c5)">${esc(p)}</span>`).join(" ")}</div>
+  <p class="muted">Resumen extractivo local. Para un resumen redactado por IA, pega el texto en el chat del asistente.</p>`;
+}
+
+// notas arrastrables
+R.notas=()=>{B("notas").innerHTML=`<div class="row"><button class="btn mini" onclick="addN()">+ nota</button><span class="muted">arrastra desde el cuerpo</span></div><div id="nl"></div>`;paintN();};
+function paintN(){const L=$("#nl");if(!L)return;L.innerHTML="";S.notas.forEach((n,i)=>{const d=document.createElement("div");d.className="note";d.style.left=(n.x||8)+"px";d.style.top=(n.y||8)+"px";
+ d.innerHTML=`<span class="x" onclick="delN(${i})">✕</span><textarea oninput="nTxt(${i},this.value)">${esc(n.t)}</textarea>`;dragN(d,i);L.appendChild(d);});}
+function dragN(el,i){let ox,oy,mv=false;const P=e=>{const r=$("#nl").getBoundingClientRect(),s=e.touches?e.touches[0]:e;return{x:s.clientX-r.left,y:s.clientY-r.top}};
+ const dn=e=>{if(e.target.tagName==="TEXTAREA"||e.target.classList.contains("x"))return;mv=true;el.classList.add("drag");const p=P(e);ox=p.x-el.offsetLeft;oy=p.y-el.offsetTop;e.preventDefault();};
+ const mo=e=>{if(!mv)return;const p=P(e),L=el.parentElement;el.style.left=Math.max(0,Math.min(p.x-ox,L.clientWidth-el.offsetWidth))+"px";el.style.top=Math.max(0,Math.min(p.y-oy,L.clientHeight-el.offsetHeight))+"px";};
+ const up=()=>{if(!mv)return;mv=false;el.classList.remove("drag");S.notas[i].x=el.offsetLeft;S.notas[i].y=el.offsetTop;save();};
+ el.addEventListener("mousedown",dn);el.addEventListener("touchstart",dn,{passive:false});document.addEventListener("mousemove",mo);document.addEventListener("touchmove",mo,{passive:false});document.addEventListener("mouseup",up);document.addEventListener("touchend",up);}
+window.addN=()=>{S.notas.push({t:"Nueva",x:12+Math.random()*40,y:12+Math.random()*40});save();paintN()};window.delN=i=>{S.notas.splice(i,1);save();paintN()};window.nTxt=(i,v)=>{S.notas[i].t=v;save()};
+
+// kanban estilo atlassian
+const COLS=[["todo","Por hacer","var(--c1)"],["doing","En progreso","var(--c5)"],["done","Hecho","#16a34a"]];
+R.kanban=()=>{B("kanban").innerHTML=`<div class="row"><input id="kt" placeholder="Nueva tarea" style="flex:1"><input id="kr" placeholder="Ramo/Proyecto" style="width:130px"><input id="kw" placeholder="Responsable" style="width:120px"><button class="btn mini" onclick="addK()">+ tarjeta</button></div>
+  <div class="board" style="margin-top:.6rem">${COLS.map(([id,tt,cl])=>`<div class="col" data-col="${id}" style="--ac:${cl}"><h4><span class="dot" style="background:${cl}"></span>${tt} <span class="muted">(${S.kanban.filter(k=>k.st===id).length})</span></h4><div class="dropz" data-col="${id}">${S.kanban.filter(k=>k.st===id).map(k=>kcard(k,cl)).join("")}</div></div>`).join("")}</div>
+  <p class="muted">Arrastra las tarjetas entre columnas.</p>`;
+ wireDnD();
+};
+function kcard(k,cl){return `<div class="kc" draggable="true" data-id="${k.id}" style="--ac:${cl}"><div class="tt">${esc(k.t)} <span class="x" style="float:right;cursor:pointer;color:var(--c6)" onclick="delK(${k.id})">✕</span></div><div class="mt"><span class="tag">${esc(k.ramo||"—")}</span><span>👤 ${esc(k.who||"—")}</span></div></div>`;}
+window.addK=()=>{const t=$("#kt").value.trim();if(!t)return;S.kanban.push({id:Date.now(),t,ramo:$("#kr").value,who:$("#kw").value,st:"todo"});save();R.kanban()};
+window.delK=id=>{S.kanban=S.kanban.filter(k=>k.id!==id);save();R.kanban()};
+let dragId=null;
+function wireDnD(){document.querySelectorAll(".kc").forEach(c=>{c.addEventListener("dragstart",()=>{dragId=+c.dataset.id;c.classList.add("drag")});c.addEventListener("dragend",()=>c.classList.remove("drag"));});
+ document.querySelectorAll(".col").forEach(col=>{col.addEventListener("dragover",e=>{e.preventDefault();col.classList.add("over")});col.addEventListener("dragleave",()=>col.classList.remove("over"));
+  col.addEventListener("drop",e=>{e.preventDefault();col.classList.remove("over");const k=S.kanban.find(x=>x.id===dragId);if(k){k.st=col.dataset.col;save();R.kanban();}});});}
+
+// sincroniza entre iframes (cambios en otro panel)
+function sync(){/* placeholder para forzar guardado ya hecho */}
+window.addEventListener("storage",e=>{if(e.key===KEY){S=load();PANELS.forEach(id=>R[id]&&R[id]());}});
+
+build();
+</script>
+</body>
+</html>
