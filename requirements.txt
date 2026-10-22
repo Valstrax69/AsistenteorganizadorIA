@@ -2,9 +2,10 @@
 # Nota: las versiones están fijadas para reproducibilidad; ajústalas si tu
 # entorno lo requiere.
 streamlit==1.39.0
-groq==0.11.0
-# groq 0.11 pasa proxies= a httpx, removido en httpx>=0.28; se fija compatible.
-httpx==0.27.2
+# Agente: LangChain con Groq. langchain-groq arrastra groq y langchain-core,
+# por eso ya no se fijan groq ni httpx a mano (el pin viejo de httpx 0.27 era
+# para groq 0.11; la version nueva de groq ya funciona con httpx 0.28).
+langchain-groq==1.1.3
 pymongo[srv]==4.9.1
 requests==2.32.3
 python-dotenv==1.0.1
