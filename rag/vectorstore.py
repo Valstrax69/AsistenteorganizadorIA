@@ -124,6 +124,29 @@ def guardar_mensaje(
         logger.warning("No se pudo guardar el mensaje (Mongo): %s", exc)
 
 
+def obtener_memoria_larga(session_id_actual: str, limite: int = 6) -> list[dict[str, Any]]:
+    """Memoria de largo plazo: trae los ultimos mensajes de OTRAS sesiones.
+
+    La memoria de corto plazo es el historial de la conversacion abierta. Esta
+    es la de largo plazo: lo que el estudiante dijo en sesiones anteriores, que
+    sigue guardado en Mongo aunque haya cerrado la app.
+    """
+    try:
+        cursor = (
+            get_collection(config.CONVERSATIONS_COLLECTION)
+            .find(
+                {"session_id": {"$ne": session_id_actual}, "rol": "user"},
+                {"_id": 0, "contenido": 1, "creado_en": 1},
+            )
+            .sort("creado_en", -1)
+            .limit(limite)
+        )
+        return list(cursor)[::-1]
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("No se pudo leer la memoria larga (Mongo): %s", exc)
+        return []
+
+
 def obtener_historial(session_id: str) -> list[dict[str, Any]]:
     try:
         cursor = (
