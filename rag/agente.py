@@ -35,6 +35,7 @@ logger = logging.getLogger(__name__)
 class RespuestaAgente:
     respuesta: str
     herramientas_usadas: list[str] = field(default_factory=list)
+    errores_herramienta: list[str] = field(default_factory=list)
     pasos: int = 0
     memoria_larga_usada: bool = False
     tokens_entrada: int = 0
@@ -104,6 +105,7 @@ class AgenteAcademico:
         mensajes.append(HumanMessage(content=pregunta))
 
         usadas: list[str] = []
+        errores: list[str] = []
         tokens_entrada = 0
         tokens_salida = 0
         pasos = 0
@@ -127,13 +129,15 @@ class AgenteAcademico:
                 usadas.append(nombre)
                 herramienta = POR_NOMBRE.get(nombre)
                 if herramienta is None:
-                    salida = f"La herramienta {nombre} no existe."
+                    salida = f"ERROR_HERRAMIENTA {nombre}: no existe."
                 else:
                     try:
                         salida = str(herramienta.invoke(llamada["args"]))
                     except Exception as exc:  # noqa: BLE001
                         logger.warning("Fallo la herramienta %s: %s", nombre, exc)
-                        salida = f"La herramienta {nombre} fallo: {exc}"
+                        salida = f"ERROR_HERRAMIENTA {nombre}: {exc}"
+                if salida.startswith("ERROR_HERRAMIENTA"):
+                    errores.append(salida)
                 mensajes.append(ToolMessage(content=salida, tool_call_id=llamada["id"]))
 
         texto = getattr(mensajes[-1], "content", "") or ""
@@ -143,6 +147,7 @@ class AgenteAcademico:
         return RespuestaAgente(
             respuesta=str(texto).strip(),
             herramientas_usadas=usadas,
+            errores_herramienta=errores,
             pasos=pasos,
             memoria_larga_usada=bool(memoria_larga),
             tokens_entrada=tokens_entrada,

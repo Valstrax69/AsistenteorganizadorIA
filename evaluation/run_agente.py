@@ -26,12 +26,30 @@ CASOS = RAIZ / "casos_agente.json"
 SALIDA = RAIZ / "resultados_agente.json"
 
 
-def _evaluar(esperadas: list[str], usadas: list[str]) -> str:
-    # PASS si se llamaron todas las esperadas. Para los casos que esperan cero
-    # herramientas, PASS solo si efectivamente no llamo ninguna.
+def _evaluar(esperadas: list[str], usadas: list[str], errores: list[str] | None = None) -> str:
+    # Una herramienta que se llamo pero fallo NO es un PASS: la respuesta al
+    # estudiante termina diciendo que hubo un problema tecnico.
+    if errores:
+        return "FAIL"
     if not esperadas:
         return "PASS" if not usadas else "FAIL"
     return "PASS" if all(e in usadas for e in esperadas) else "FAIL"
+
+
+def _preparar(caso: dict) -> None:
+    """Deja la base en el estado que el caso da por supuesto.
+
+    Se llama a la herramienta directamente, sin pasar por el LLM: es
+    preparacion del escenario, no parte de lo que se evalua.
+    """
+    from rag.herramientas import POR_NOMBRE
+    for paso in caso.get("setup", []):
+        herramienta = POR_NOMBRE.get(paso["herramienta"])
+        if herramienta is not None:
+            try:
+                herramienta.invoke(paso["args"])
+            except Exception as exc:  # noqa: BLE001
+                print(f"   (setup fallo: {exc})")
 
 
 def _correr_simple(agente, caso: dict, session_id: str) -> dict:
@@ -44,7 +62,8 @@ def _correr_simple(agente, caso: dict, session_id: str) -> dict:
         "herramientas_usadas": r.herramientas_usadas,
         "pasos": r.pasos,
         "respuesta": r.respuesta,
-        "resultado": _evaluar(caso["herramientas_esperadas"], r.herramientas_usadas),
+        "errores_herramienta": r.errores_herramienta,
+        "resultado": _evaluar(caso["herramientas_esperadas"], r.herramientas_usadas, r.errores_herramienta),
     }
 
 
@@ -54,7 +73,7 @@ def _correr_secuencia(agente, caso: dict, session_id: str) -> dict:
     ok = True
     for paso in caso["pasos"]:
         r = agente.responder(paso["pregunta"], historial=historial, session_id=session_id)
-        resultado = _evaluar(paso["herramientas_esperadas"], r.herramientas_usadas)
+        resultado = _evaluar(paso["herramientas_esperadas"], r.herramientas_usadas, r.errores_herramienta)
         ok = ok and resultado == "PASS"
         historial.append({"rol": "user", "contenido": paso["pregunta"]})
         historial.append({"rol": "assistant", "contenido": r.respuesta})
@@ -63,6 +82,7 @@ def _correr_secuencia(agente, caso: dict, session_id: str) -> dict:
                 "pregunta": paso["pregunta"],
                 "herramientas_esperadas": paso["herramientas_esperadas"],
                 "herramientas_usadas": r.herramientas_usadas,
+                "errores_herramienta": r.errores_herramienta,
                 "respuesta": r.respuesta,
                 "resultado": resultado,
             }
@@ -84,6 +104,7 @@ def main() -> None:
     for caso in casos:
         print(f"-> {caso['id']} ...", flush=True)
         try:
+            _preparar(caso)
             if "pasos" in caso:
                 resultados.append(_correr_secuencia(agente, caso, session_id))
             else:
