@@ -1,0 +1,167 @@
+{
+  "ejecutado_en": "2026-10-22T18:28:10",
+  "total": 10,
+  "aprobados": 9,
+  "casos": [
+    {
+      "id": "AG-01",
+      "tipo": "escritura",
+      "pregunta": "Anota que tengo la EP2 de Ingenieria de Soluciones con IA el 2026-11-12, vale 35%.",
+      "herramientas_esperadas": [
+        "crear_tarea"
+      ],
+      "herramientas_usadas": [
+        "crear_tarea"
+      ],
+      "pasos": 2,
+      "respuesta": "Listo, anoté la EP2 de Ingeniería de Soluciones con IA para el 12 de noviembre de 2026 con una ponderación del 35 %. ¡Éxitos con la entrega!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-02",
+      "tipo": "consulta",
+      "pregunta": "Que tareas tengo pendientes?",
+      "herramientas_esperadas": [
+        "listar_tareas"
+      ],
+      "herramientas_usadas": [
+        "listar_tareas"
+      ],
+      "pasos": 2,
+      "respuesta": "Tienes estas tareas pendientes:\n\n- **EP2 (Ingeniería de Soluciones con IA)** – entrega **2026‑11‑12** – 35 % – por hacer  \n- **Prueba de Álgebra (MAT6130)** – entrega **2026‑11‑05** – 20 % – por hacer  \n\n¡Ánimo y a organizarte!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-03",
+      "tipo": "razonamiento",
+      "pregunta": "Por donde me conviene partir esta semana?",
+      "herramientas_esperadas": [
+        "planificar_semana"
+      ],
+      "herramientas_usadas": [
+        "planificar_semana"
+      ],
+      "pasos": 2,
+      "respuesta": "Esta semana lo más urgente es:\n\n1. **EP2 de Ingeniería de Soluciones con IA** – 35 % de la nota, quedan 21 días.  \n2. **Prueba de Álgebra (MAT6130)** – 20 % de la nota, quedan 14 días.\n\nEnfócate primero en avanzar el EP2, dedicándole tiempo cada día, y reserva tiempo esta semana para repasar y resolver ejercicios de la prueba de Álgebra antes de que se acerque la fecha. ¡Éxitos!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-04",
+      "tipo": "escritura",
+      "pregunta": "Falte hoy a Ingenieria de Soluciones con IA.",
+      "herramientas_esperadas": [
+        "registrar_asistencia"
+      ],
+      "herramientas_usadas": [
+        "registrar_asistencia"
+      ],
+      "pasos": 2,
+      "respuesta": "¡Listo! He registrado que no asististe a la clase de Ingeniería de Soluciones con IA hoy. Si necesitas algo más, avísame.",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-05",
+      "tipo": "consulta",
+      "pregunta": "Como voy de asistencia en Ingenieria de Soluciones con IA?",
+      "herramientas_esperadas": [
+        "estado_asistencia"
+      ],
+      "herramientas_usadas": [
+        "estado_asistencia"
+      ],
+      "pasos": 2,
+      "respuesta": "En la materia **Ingeniería de Soluciones con IA** tienes un **0 % de asistencia** (0 de 3 clases registradas). Estás por debajo del mínimo exigido del 70 %, así que te recomiendo asistir a la mayor cantidad de clases posible para evitar problemas académicos. ¡Ánimo!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-06",
+      "tipo": "rag",
+      "pregunta": "Que carreras de informatica dicta DuocUC?",
+      "herramientas_esperadas": [
+        "buscar_material"
+      ],
+      "herramientas_usadas": [
+        "buscar_material",
+        "buscar_en_web"
+      ],
+      "pasos": 3,
+      "respuesta": "En DuocUC puedes estudiar las siguientes carreras relacionadas con informática:\n\n1. **Ingeniería en Informática** – La carrera principal que forma profesionales en desarrollo de software, bases de datos, arquitectura de sistemas y gestión de proyectos tecnológicos.  \n2. **Técnico en Informática** – Programa más corto que se enfoca en la instalación, mantenimiento y soporte de equipos y redes.  \n3. **Técnico en Desarrollo de Software** – Especializado en la creación y mantenimiento de aplicaciones y sistemas informáticos.  \n4. **Técnico en Redes y Telecomunicaciones** – Centrado en la configuración, administración y seguridad de redes y sistemas de comunicación.  \n\nEstas opciones están dentro de la Escuela de Informática y Telecomunicaciones de DuocUC. Si necesitas más detalle sobre alguna de ellas (plan de estudios, duración, requisitos de ingreso, etc.) avísame y te ayudo.",
+      "errores_herramienta": [
+        "ERROR_HERRAMIENTA buscar_material: No module named 'sentence_transformers'"
+      ],
+      "resultado": "FAIL"
+    },
+    {
+      "id": "AG-07",
+      "tipo": "encadenado",
+      "pregunta": "Ya termine el Taller de algebra. Dime en que orden conviene seguir.",
+      "herramientas_esperadas": [
+        "mover_tarea",
+        "planificar_semana"
+      ],
+      "herramientas_usadas": [
+        "planificar_semana",
+        "mover_tarea",
+        "planificar_semana"
+      ],
+      "pasos": 4,
+      "respuesta": "¡Genial que ya terminaste el Taller de Álgebra!  \n\nSegún la planificación actual, el orden más conveniente para avanzar es:\n\n1. **EP2 (Ingeniería de Soluciones con IA)** – 35 % de la nota, quedan 21 días.  \n2. **Control de inglés (IDI1101)** – 10 % de la nota, quedan 6 días.  \n3. **Prueba de Álgebra (MAT6130)** – 20 % de la nota, quedan 14 días.  \n4. **Informe TLY1102** – 30 % de la nota, quedan 29 días.  \n\nEnfócate primero en el EP2 (tienes varios entregables, así que avanza en ellos), luego revisa el control de inglés que está próximo a vencerse, sigue con la prueba de Álgebra y, por último, dedica tiempo al informe de TLY1102.  \n\n¡Éxitos con lo que sigue!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-08",
+      "tipo": "fuera_de_dominio",
+      "pregunta": "Como preparo una masa de pizza?",
+      "herramientas_esperadas": [],
+      "herramientas_usadas": [],
+      "pasos": 1,
+      "respuesta": "¡Hola! Soy el asistente académico de DuocUC y estoy especializado en ayudarte con materias, horarios, tareas y todo lo relacionado con tus estudios. \n\nPara recetas de cocina, como la masa de pizza, te recomendaría buscar en sitios de gastronomía o en YouTube, donde encontrarás muchas guías paso a paso. \n\nSi necesitas ayuda con alguna materia, organizar tu semana o cualquier tema académico, aquí estoy. ¡Éxitos!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-09",
+      "tipo": "dato_faltante",
+      "pregunta": "Anotame una prueba de Machine Learning.",
+      "herramientas_esperadas": [],
+      "herramientas_usadas": [],
+      "pasos": 1,
+      "respuesta": "¡Claro! Para crear la tarea necesito saber dos cosas:\n\n1. ¿En qué ramo (asignatura) está la prueba de Machine Learning?  \n2. ¿Cuál es la fecha de entrega o el día de la prueba (formato AAAA‑MM‑DD)?\n\n¡Avísame y lo registro enseguida!",
+      "errores_herramienta": [],
+      "resultado": "PASS"
+    },
+    {
+      "id": "AG-10",
+      "tipo": "memoria_corto_plazo",
+      "pasos_detalle": [
+        {
+          "pregunta": "Tengo prueba de Algebra del ramo MAT6130 el 2026-11-05, vale 20%.",
+          "herramientas_esperadas": [
+            "crear_tarea"
+          ],
+          "herramientas_usadas": [
+            "crear_tarea"
+          ],
+          "errores_herramienta": [],
+          "respuesta": "¡Listo! La prueba de Álgebra del ramo **MAT6130** está anotada para el **2026‑11‑05** con una ponderación del **20 %**. Si necesitas organizar la semana o cualquier otra cosa, avísame.",
+          "resultado": "PASS"
+        },
+        {
+          "pregunta": "Y cuanto falta para esa?",
+          "herramientas_esperadas": [],
+          "herramientas_usadas": [],
+          "errores_herramienta": [],
+          "respuesta": "Faltan **14 días** para la prueba de Álgebra del ramo MAT6130 (2026‑11‑05). ¡Ánimo con la preparación!",
+          "resultado": "PASS"
+        }
+      ],
+      "resultado": "PASS"
+    }
+  ]
+}
