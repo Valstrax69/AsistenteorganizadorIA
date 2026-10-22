@@ -80,6 +80,25 @@ El ciclo está acotado por `MAX_PASOS_AGENTE` para evitar bucles indefinidos, y 
 
 Los casos funcionales cubren escritura, consulta, razonamiento, encadenamiento, consulta fuera de dominio, dato faltante (que el agente pregunte la fecha en vez de inventarla) y continuidad conversacional.
 
+**Resultado de la ejecución del 2026-10-22: 9/10 PASS.**
+
+| Caso | Tipo | Herramientas invocadas | Resultado |
+|---|---|---|---|
+| AG-01 | escritura | crear_tarea | PASS |
+| AG-02 | consulta | listar_tareas | PASS |
+| AG-03 | razonamiento | planificar_semana | PASS |
+| AG-04 | escritura | registrar_asistencia | PASS |
+| AG-05 | consulta | estado_asistencia | PASS |
+| AG-06 | rag | buscar_material, buscar_en_web | FAIL |
+| AG-07 | encadenado | planificar_semana, listar_tareas, mover_tarea, mover_tarea, planificar_semana | PASS |
+| AG-08 | fuera_de_dominio | (ninguna) | PASS |
+| AG-09 | dato_faltante | (ninguna) | PASS |
+| AG-10 | memoria_corto_plazo | crear_tarea | PASS |
+
+El único caso fallido, AG-06, requiere `sentence-transformers`, que no dispone de wheel precompilado para la versión de Python del equipo de desarrollo. El agente detectó el fallo de la herramienta y recurrió a la fuente externa, entregando igualmente una respuesta correcta: el sistema se degrada de forma controlada en lugar de interrumpirse.
+
+La traza del caso AG-07 ilustra el encadenamiento y la decisión adaptativa: `planificar_semana` → `mover_tarea` → `planificar_semana`, es decir, el agente consultó el estado, lo modificó y volvió a planificar sobre el estado actualizado.
+
 ## 7. Restricciones y deuda técnica
 
 - **Límite del plan gratuito.** El agente carga en cada llamada el esquema de herramientas además del contexto. Se redujeron `TOP_K` y `MAX_HISTORY_MSGS` para operar dentro del límite por minuto.
