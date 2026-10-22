@@ -27,7 +27,7 @@ import streamlit.components.v1 as components
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from rag import config, vectorstore  # noqa: E402
-from rag.generator import get_rag_generator  # noqa: E402
+from rag.agente import get_agente  # noqa: E402
 from rag.ingest import ingestar_desde_github  # noqa: E402
 
 st.set_page_config(
@@ -176,16 +176,23 @@ def _render_mensajes() -> None:
         with st.chat_message(m["rol"]):
             st.markdown(m["contenido"])
             if m["rol"] == "assistant":
-                if m.get("fuentes"):
-                    with st.expander("📚 Fuentes usadas (internas y externas)"):
-                        for f in m["fuentes"]:
-                            enc = f"**{f['fuente']}**"
-                            if f.get("score") is not None:
-                                enc += f" (score: {f['score']})"
-                            st.markdown(enc)
-                            if f.get("url"):
-                                st.caption(f"🔗 {f['url']}")
-                            st.caption((f.get("texto") or "")[:300] + "...")
+                diag = m.get("diagnostico")
+                if diag:
+                    with st.expander("🔧 Detalles técnicos (qué decidió el agente)"):
+                        usadas = diag.get("herramientas") or []
+                        st.markdown(
+                            f"**Herramientas llamadas:** "
+                            f"{' → '.join(usadas) if usadas else 'ninguna (respondió directo)'}"
+                        )
+                        st.markdown(f"**Pasos del ciclo:** {diag.get('pasos', 0)}")
+                        st.markdown(
+                            f"**Memoria de largo plazo:** "
+                            f"{'sí' if diag.get('memoria_larga') else 'no'}"
+                        )
+                        st.caption(
+                            f"tokens entrada {diag.get('tokens_entrada', 0)} · "
+                            f"salida {diag.get('tokens_salida', 0)}"
+                        )
                 _feedback(i, m)
 
 
@@ -214,24 +221,40 @@ def main() -> None:
     st.session_state.mensajes.append({"rol": "user", "contenido": pregunta})
     vectorstore.guardar_mensaje(st.session_state.session_id, "user", pregunta)
 
-    with st.spinner("Pensando..."):
-        resultado = get_rag_generator().responder(
-            pregunta, historial=st.session_state.mensajes[:-1]
-        )
+    with st.spinner("Pensando y usando herramientas..."):
+        try:
+            resultado = get_agente().responder(
+                pregunta,
+                historial=st.session_state.mensajes[:-1],
+                session_id=st.session_state.session_id,
+            )
+        except Exception as exc:  # noqa: BLE001
+            texto = str(exc)
+            if "rate" in texto.lower() or "429" in texto:
+                st.error("Se alcanzó el límite de peticiones de Groq. Espera un momento.")
+            else:
+                st.error(f"Error al ejecutar el agente: {exc}")
+            return
 
     st.session_state.mensajes.append(
         {
             "rol": "assistant",
             "contenido": resultado.respuesta,
             "pregunta": pregunta,
-            "fuentes": resultado.fuentes,
+            "diagnostico": {
+                "herramientas": resultado.herramientas_usadas,
+                "pasos": resultado.pasos,
+                "memoria_larga": resultado.memoria_larga_usada,
+                "tokens_entrada": resultado.tokens_entrada,
+                "tokens_salida": resultado.tokens_salida,
+            },
         }
     )
     vectorstore.guardar_mensaje(
         session_id=st.session_state.session_id,
         rol="assistant",
         contenido=resultado.respuesta,
-        fuentes=resultado.fuentes,
+        fuentes=[{"fuente": h} for h in resultado.herramientas_usadas],
         tokens_entrada=resultado.tokens_entrada,
         tokens_salida=resultado.tokens_salida,
     )
