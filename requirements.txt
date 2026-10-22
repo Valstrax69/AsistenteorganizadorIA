@@ -1,3 +1,4 @@
+# Requiere Python 3.11 o 3.12 (ver README).
 # --- Núcleo de la app (runtime) ---
 # Nota: las versiones están fijadas para reproducibilidad; ajústalas si tu
 # entorno lo requiere.

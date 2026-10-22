@@ -51,6 +51,22 @@ docs/           architecture.md
 
 El criterio de prioridad es determinista (`ponderación / días restantes`), no lo decide el LLM: una prueba de 35% en 2 días gana sobre una de 20% en 20 días.
 
+## Requisito de versión de Python
+
+El proyecto requiere **Python 3.11 o 3.12**. En versiones más nuevas (3.13+)
+`pandas`, `torch` y `pillow` no tienen wheels precompilados y pip intenta
+compilarlos desde fuente, lo que falla sin un toolchain de C configurado.
+
+```bash
+py -3.12 -m venv .venv
+.venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+```
+
+Sin `sentence-transformers` el agente igual funciona: `buscar_material`
+reporta el fallo y el modelo cae a `buscar_en_web`, pero la búsqueda
+semántica sobre el material interno queda inhabilitada.
+
 ## Evidencia de pruebas
 
 ```bash
