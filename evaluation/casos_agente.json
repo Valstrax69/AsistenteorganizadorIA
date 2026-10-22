@@ -3,50 +3,94 @@
     "id": "AG-01",
     "tipo": "escritura",
     "pregunta": "Anota que tengo la EP2 de Ingenieria de Soluciones con IA el 2026-11-12, vale 35%.",
-    "herramientas_esperadas": ["crear_tarea"],
+    "herramientas_esperadas": [
+      "crear_tarea"
+    ],
     "espera": "Confirma que creo la tarea con esa fecha."
   },
   {
     "id": "AG-02",
     "tipo": "consulta",
     "pregunta": "Que tareas tengo pendientes?",
-    "herramientas_esperadas": ["listar_tareas"],
+    "herramientas_esperadas": [
+      "listar_tareas"
+    ],
     "espera": "Lista las tareas en estado por_hacer o en_progreso."
   },
   {
     "id": "AG-03",
     "tipo": "razonamiento",
     "pregunta": "Por donde me conviene partir esta semana?",
-    "herramientas_esperadas": ["planificar_semana"],
+    "herramientas_esperadas": [
+      "planificar_semana"
+    ],
     "espera": "Devuelve las pendientes ordenadas por ponderacion y dias restantes."
   },
   {
     "id": "AG-04",
     "tipo": "escritura",
     "pregunta": "Falte hoy a Ingenieria de Soluciones con IA.",
-    "herramientas_esperadas": ["registrar_asistencia"],
+    "herramientas_esperadas": [
+      "registrar_asistencia"
+    ],
     "espera": "Registra la inasistencia."
   },
   {
     "id": "AG-05",
     "tipo": "consulta",
     "pregunta": "Como voy de asistencia en Ingenieria de Soluciones con IA?",
-    "herramientas_esperadas": ["estado_asistencia"],
+    "herramientas_esperadas": [
+      "estado_asistencia"
+    ],
     "espera": "Da el porcentaje y avisa si esta bajo el minimo."
   },
   {
     "id": "AG-06",
     "tipo": "rag",
     "pregunta": "Que carreras de informatica dicta DuocUC?",
-    "herramientas_esperadas": ["buscar_material"],
+    "herramientas_esperadas": [
+      "buscar_material"
+    ],
     "espera": "Responde citando [Interna N] del material indexado."
   },
   {
     "id": "AG-07",
     "tipo": "encadenado",
-    "pregunta": "Ya termine el Taller de algebra. Despues dime que sigue.",
-    "herramientas_esperadas": ["mover_tarea", "planificar_semana"],
-    "espera": "Dos herramientas en el mismo turno: cambia el estado y replanifica."
+    "pregunta": "Ya termine el Taller de algebra. Dime en que orden conviene seguir.",
+    "herramientas_esperadas": [
+      "mover_tarea",
+      "planificar_semana"
+    ],
+    "espera": "Dos herramientas en el mismo turno: cambia el estado de una tarea que si existe y replanifica.",
+    "setup": [
+      {
+        "herramienta": "crear_tarea",
+        "args": {
+          "titulo": "Taller de algebra",
+          "ramo": "MAT6130",
+          "fecha_entrega": "2026-11-03",
+          "ponderacion": 15
+        }
+      },
+      {
+        "herramienta": "crear_tarea",
+        "args": {
+          "titulo": "Control de ingles",
+          "ramo": "IDI1101",
+          "fecha_entrega": "2026-10-28",
+          "ponderacion": 10
+        }
+      },
+      {
+        "herramienta": "crear_tarea",
+        "args": {
+          "titulo": "Informe TLY1102",
+          "ramo": "TLY1102",
+          "fecha_entrega": "2026-11-20",
+          "ponderacion": 30
+        }
+      }
+    ]
   },
   {
     "id": "AG-08",
@@ -67,12 +111,15 @@
     "tipo": "memoria_corto_plazo",
     "pasos": [
       {
-        "pregunta": "Tengo prueba de Algebra el 2026-11-05, vale 20%.",
-        "herramientas_esperadas": ["crear_tarea"]
+        "pregunta": "Tengo prueba de Algebra del ramo MAT6130 el 2026-11-05, vale 20%.",
+        "herramientas_esperadas": [
+          "crear_tarea"
+        ]
       },
       {
         "pregunta": "Y cuanto falta para esa?",
-        "herramientas_esperadas": ["listar_tareas"]
+        "herramientas_esperadas": [],
+        "nota": "Puede responder desde el historial o consultando; lo que se valida es que entienda 'esa' sin repetir el nombre."
       }
     ],
     "espera": "El segundo turno entiende 'esa' sin que se repita el nombre."
