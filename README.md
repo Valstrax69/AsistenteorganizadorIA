@@ -1,7 +1,8 @@
-# RAG DuocUC · Groq
+# Asistente Organizador Académico · Agente con LangChain + Groq
 
-Chatbot RAG para el ramo **Ingeniería de Soluciones con Inteligencia Artificial** (DuocUC).
-Responde preguntas de estudiantes de Duoc UC usando material institucional en Markdown (carpeta `data/`) y una fuente externa de búsqueda web. Incluye además un panel de herramientas académicas.
+Agente académico para el ramo **Ingeniería de Soluciones con Inteligencia Artificial** (DuocUC, ISY0101).
+
+No es solo un chatbot: el modelo decide por sí mismo qué herramientas llamar. Puede **consultar** el material institucional y la agenda del estudiante, **escribir** en esa agenda (crear tareas, moverlas de estado, registrar asistencia) y **razonar** sobre ella (priorizar la semana).
 
 Variante propia: LLM servido por **Groq** y **embeddings locales** (sin API de embeddings).
 
@@ -9,25 +10,54 @@ Variante propia: LLM servido por **Groq** y **embeddings locales** (sin API de e
 
 | Componente | Tecnología |
 |-----------|-----------|
-| LLM | Groq — configurable vía `GROQ_MODEL` (actual: `groq/compound-mini`) |
+| Framework de agente | LangChain (`langchain-groq`) — `bind_tools` + ciclo ReAct explícito |
+| LLM | Groq — configurable vía `GROQ_MODEL` (actual: `openai/gpt-oss-120b`) |
 | Embeddings | `intfloat/multilingual-e5-small` (local, 384 dims) |
 | Vector DB | MongoDB Atlas (Vector Search) |
+| Memoria | Corto plazo: historial de sesión. Largo plazo: colección `conversaciones` en Mongo |
 | UI | Streamlit |
-| Evaluación | RAGAS (juez Groq + embeddings locales) con fallback léxico |
+| Evaluación | Casos funcionales (`evaluation/run_agente.py`) + RAGAS para el retrieval |
 | CI/CD | GitHub Actions |
 | Contenedor | Docker |
+
+> **Nota sobre el modelo:** los sistemas `compound` de Groq **no aceptan herramientas propias**, por lo que no sirven para este agente. `GROQ_MODEL` debe apuntar a un modelo con function calling.
 
 ## Estructura
 
 ```
 rag/            config.py · embeddings.py · vectorstore.py · ingest.py
-                retriever.py · generator.py · costs.py · prompts.py
-app/            streamlit_app.py
+                retriever.py · herramientas.py · agente.py · prompts.py
+                generator.py · costs.py        (chatbot previo, lo usa run_eval)
+app/            streamlit_app.py · tools.html
 scripts/        create_index.py
-evaluation/     dataset.json · run_eval.py
+evaluation/     casos_agente.json · run_agente.py   (evidencia del agente)
+                dataset.json · run_eval.py          (calidad del RAG)
 docs/           architecture.md
 .github/workflows/ci.yml · Dockerfile · requirements*.txt · .env.example
 ```
+
+## Herramientas del agente
+
+| Herramienta | Tipo | Qué hace |
+|---|---|---|
+| `buscar_material` | consulta | Búsqueda semántica en el material interno (Atlas Vector Search) |
+| `buscar_en_web` | consulta | Fuente externa cuando el material interno no alcanza |
+| `listar_tareas` | consulta | Tareas y evaluaciones registradas |
+| `estado_asistencia` | consulta | % de asistencia por ramo y alerta bajo el mínimo |
+| `crear_tarea` | escritura | Registra una tarea con ramo, fecha y ponderación |
+| `mover_tarea` | escritura | Cambia el estado (por_hacer / en_progreso / hecho) |
+| `registrar_asistencia` | escritura | Registra asistencia o inasistencia del día |
+| `planificar_semana` | razonamiento | Ordena pendientes por ponderación y días restantes |
+
+El criterio de prioridad es determinista (`ponderación / días restantes`), no lo decide el LLM: una prueba de 35% en 2 días gana sobre una de 20% en 20 días.
+
+## Evidencia de pruebas
+
+```bash
+python -m evaluation.run_agente
+```
+
+Corre los 10 casos de `evaluation/casos_agente.json` (escritura, consulta, razonamiento, encadenado, fuera de dominio, dato faltante y continuidad conversacional) y deja el snapshot con PASS/FAIL en `evaluation/resultados_agente.json`.
 
 Toda la configuración vive en `rag/config.py` (leída desde variables de entorno);
 no se hardcodean modelos ni credenciales en el resto del código.

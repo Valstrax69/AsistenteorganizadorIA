@@ -44,6 +44,8 @@ jobs:
           python -c "from rag import config, costs, prompts, vectorstore, embeddings; print('rag utils OK')"
           python -c "from rag.retriever import Retriever; print('retriever OK')"
           python -c "from rag.generator import RAGGenerator; print('generator OK')"
+          python -c "from rag.herramientas import HERRAMIENTAS; print('herramientas OK:', len(HERRAMIENTAS))"
+          python -c "from rag.agente import AgenteAcademico; print('agente OK')"
           python -c "from rag.ingest import dividir_en_chunks; print('ingest OK')"
 
       - name: Build de la imagen Docker
