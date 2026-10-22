@@ -1,5 +1,5 @@
 {
-  "ejecutado_en": "2026-10-22T18:28:10",
+  "ejecutado_en": "2026-10-22T18:31:10",
   "total": 10,
   "aprobados": 9,
   "casos": [
@@ -14,7 +14,7 @@
         "crear_tarea"
       ],
       "pasos": 2,
-      "respuesta": "Listo, anoté la EP2 de Ingeniería de Soluciones con IA para el 12 de noviembre de 2026 con una ponderación del 35 %. ¡Éxitos con la entrega!",
+      "respuesta": "¡Listo! He anotado la EP2 de **Ingeniería de Soluciones con IA** para el 12‑11‑2026, con una ponderación del 35 %.  \n\n¿Quieres que te ayude a organizar la semana, registrar alguna asistencia o algo más?",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -29,7 +29,7 @@
         "listar_tareas"
       ],
       "pasos": 2,
-      "respuesta": "Tienes estas tareas pendientes:\n\n- **EP2 (Ingeniería de Soluciones con IA)** – entrega **2026‑11‑12** – 35 % – por hacer  \n- **Prueba de Álgebra (MAT6130)** – entrega **2026‑11‑05** – 20 % – por hacer  \n\n¡Ánimo y a organizarte!",
+      "respuesta": "Tienes pendientes:\n\n- EP2 (Ingeniería de Soluciones con IA) – entrega 2026‑11‑12 – 35 %\n- Prueba de Álgebra (MAT6130) – entrega 2026‑11‑05 – 20 %\n- Taller de Álgebra (MAT6130) – entrega 2026‑11‑03 – 15 %\n- Control de Inglés (IDI1101) – entrega 2026‑10‑28 – 10 %\n- Informe TLY1102 (TLY1102) – entrega 2026‑11‑20 – 30 %\n\nTodas están en estado **por_hacer**. ¡Ánimo!",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -44,7 +44,7 @@
         "planificar_semana"
       ],
       "pasos": 2,
-      "respuesta": "Esta semana lo más urgente es:\n\n1. **EP2 de Ingeniería de Soluciones con IA** – 35 % de la nota, quedan 21 días.  \n2. **Prueba de Álgebra (MAT6130)** – 20 % de la nota, quedan 14 días.\n\nEnfócate primero en avanzar el EP2, dedicándole tiempo cada día, y reserva tiempo esta semana para repasar y resolver ejercicios de la prueba de Álgebra antes de que se acerque la fecha. ¡Éxitos!",
+      "respuesta": "¡Claro! Te propongo una agenda para esta semana, ordenada por prioridad (peso en la nota + tiempo restante).  \n\n| Día | Prioridad | Tarea | Peso | Días restantes | Qué hacer |\n|-----|-----------|-------|------|----------------|-----------|\n| **Lunes** | 1 | **Control de inglés (IDI1101)** | 10 % | 6 | Repasa los materiales y haz los ejercicios de práctica. Termina la actividad antes de la medianoche. |\n| **Martes** | 2 | **Prueba de Álgebra (MAT6130)** | 20 % | 14 | Resuelve los ejercicios del temario y haz al menos 2 simulacros. |\n| **Miércoles** | 3 | **Taller de Álgebra (MAT6130)** | 15 % | 12 | Avanza en la entrega del taller; escribe la primera mitad y revisa los criterios de evaluación. |\n| **Jueves** | 4 | **EP2 – Ingeniería de Soluciones con IA** | 35 % | 21 | Dedica 2 h a la investigación del proyecto y define el alcance. |\n| **Viernes** | 5 | **EP2 – Ingeniería de Soluciones con IA** | 35 % | 21 | Continúa con el desarrollo del prototipo; apunta los avances en tu bitácora. |\n| **Sábado** | 6 | **EP2 – Ingeniería de Soluciones con IA** | 35 % | 21 | Revisa y corrige lo hecho; prepara la presentación preliminar. |\n| **Domingo** | 7 | **Informe TLY1102** | 30 % | 29 | Lee las instrucciones y bosqueja la estructura del informe (introducción, objetivos, metodología). |\n\n### Tips para mantener el ritmo\n1. **Bloques de estudio:** reserva al menos 2 h continuas por bloque y evita interrupciones (teléfono, redes).  \n2. **Método Pomodoro:** 25 min de foco + 5 min de descanso; cada 4 pomodoros, toma un descanso de 15‑20 min.  \n3. **Revisión rápida:** al final de cada día, verifica que la tarea del día quedó completada o al menos con un avance del 80 %.  \n4. **Prioriza lo urgente:** aunque el EP2 tiene mayor peso, su fecha está más lejana; por eso lo dejamos para la segunda mitad de la semana.  \n\nSi necesitas crear alguna tarea nueva, mover alguna a “en progreso” o registrar asistencia, avísame y lo gestiono al instante. ¡Éxitos esta semana!",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -59,7 +59,7 @@
         "registrar_asistencia"
       ],
       "pasos": 2,
-      "respuesta": "¡Listo! He registrado que no asististe a la clase de Ingeniería de Soluciones con IA hoy. Si necesitas algo más, avísame.",
+      "respuesta": "¡Listo! He registrado que faltaste hoy a Ingeniería de Soluciones con IA. Si necesitas saber tu porcentaje de asistencia o cualquier otra cosa, avísame.",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -74,7 +74,7 @@
         "estado_asistencia"
       ],
       "pasos": 2,
-      "respuesta": "En la materia **Ingeniería de Soluciones con IA** tienes un **0 % de asistencia** (0 de 3 clases registradas). Estás por debajo del mínimo exigido del 70 %, así que te recomiendo asistir a la mayor cantidad de clases posible para evitar problemas académicos. ¡Ánimo!",
+      "respuesta": "En la materia **Ingeniería de Soluciones con IA** llevas un **0 % de asistencia** (0 de 4 clases registradas). Estás muy por debajo del mínimo exigido del 70 %, así que te recomiendo asistir a todas las clases que puedas y, si es necesario, hablar con el profesor para regularizar tu situación.",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -90,7 +90,7 @@
         "buscar_en_web"
       ],
       "pasos": 3,
-      "respuesta": "En DuocUC puedes estudiar las siguientes carreras relacionadas con informática:\n\n1. **Ingeniería en Informática** – La carrera principal que forma profesionales en desarrollo de software, bases de datos, arquitectura de sistemas y gestión de proyectos tecnológicos.  \n2. **Técnico en Informática** – Programa más corto que se enfoca en la instalación, mantenimiento y soporte de equipos y redes.  \n3. **Técnico en Desarrollo de Software** – Especializado en la creación y mantenimiento de aplicaciones y sistemas informáticos.  \n4. **Técnico en Redes y Telecomunicaciones** – Centrado en la configuración, administración y seguridad de redes y sistemas de comunicación.  \n\nEstas opciones están dentro de la Escuela de Informática y Telecomunicaciones de DuocUC. Si necesitas más detalle sobre alguna de ellas (plan de estudios, duración, requisitos de ingreso, etc.) avísame y te ayudo.",
+      "respuesta": "En DuocUC, la **Escuela de Informática y Telecomunicaciones** ofrece las siguientes carreras técnico‑profesionales relacionadas con informática:\n\n| Carrera | Duración | Tipo de título |\n|--------|----------|----------------|\n| **Ingeniería en Informática** | 4 años (8 semestres) | Técnico profesional |\n| **Ingeniería en Redes y Telecomunicaciones** | 4 años (8 semestres) | Técnico profesional |\n| **Desarrollo de Software** | 3 años (6 semestres) | Técnico profesional |\n| **Análisis de Sistemas** | 3 años (6 semestres) | Técnico profesional |\n| **Gestión de Tecnologías de la Información (TI)** | 3 años (6 semestres) | Técnico profesional |\n| **Ciberseguridad** (carrera emergente) | 3 años (6 semestres) | Técnico profesional |\n\nEstas carreras están diseñadas para formar profesionales que puedan desarrollar, mantener y gestionar soluciones tecnológicas, redes de comunicación y sistemas de información en distintos sectores. Si necesitas más detalle sobre alguna de ellas (plan de estudios, requisitos de ingreso, etc.), avísame y te ayudo.",
       "errores_herramienta": [
         "ERROR_HERRAMIENTA buscar_material: No module named 'sentence_transformers'"
       ],
@@ -106,11 +106,13 @@
       ],
       "herramientas_usadas": [
         "planificar_semana",
+        "listar_tareas",
+        "mover_tarea",
         "mover_tarea",
         "planificar_semana"
       ],
-      "pasos": 4,
-      "respuesta": "¡Genial que ya terminaste el Taller de Álgebra!  \n\nSegún la planificación actual, el orden más conveniente para avanzar es:\n\n1. **EP2 (Ingeniería de Soluciones con IA)** – 35 % de la nota, quedan 21 días.  \n2. **Control de inglés (IDI1101)** – 10 % de la nota, quedan 6 días.  \n3. **Prueba de Álgebra (MAT6130)** – 20 % de la nota, quedan 14 días.  \n4. **Informe TLY1102** – 30 % de la nota, quedan 29 días.  \n\nEnfócate primero en el EP2 (tienes varios entregables, así que avanza en ellos), luego revisa el control de inglés que está próximo a vencerse, sigue con la prueba de Álgebra y, por último, dedica tiempo al informe de TLY1102.  \n\n¡Éxitos con lo que sigue!",
+      "pasos": 5,
+      "respuesta": "1. EP2 (Ingenieria de Soluciones con IA) | 35% | quedan 21 dias\n2. EP2 (Ingenieria de Soluciones con IA) | 35% | quedan 21 dias\n3. EP2 (Ingenieria de Soluciones con IA) | 35% | quedan 21 dias\n4. Control de ingles (IDI1101) | 10% | quedan 6 dias\n5. EP2 (Ingenieria de Soluciones con IA) | 35% | quedan 21 dias\n6. Control de ingles (IDI1101) | 10% | quedan 6 dias\n7. Prueba de Algebra (MAT6130) | 20% | quedan 14 dias\n8. Prueba de Algebra (MAT6130) | 20% | quedan 14 dias\n9. Taller de algebra (MAT6130) | 15% | quedan 12 dias\n10. Taller de algebra (MAT6130) | 15% | quedan 12 dias\n11. Informe TLY1102 (TLY1102) | 30% | quedan 29 dias\n12. Informe TLY1102 (TLY1102) | 30% | quedan 29 dias",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -121,7 +123,7 @@
       "herramientas_esperadas": [],
       "herramientas_usadas": [],
       "pasos": 1,
-      "respuesta": "¡Hola! Soy el asistente académico de DuocUC y estoy especializado en ayudarte con materias, horarios, tareas y todo lo relacionado con tus estudios. \n\nPara recetas de cocina, como la masa de pizza, te recomendaría buscar en sitios de gastronomía o en YouTube, donde encontrarás muchas guías paso a paso. \n\nSi necesitas ayuda con alguna materia, organizar tu semana o cualquier tema académico, aquí estoy. ¡Éxitos!",
+      "respuesta": "¡Hola! Soy el asistente académico de DuocUC y me especializo en temas de carreras, materias, horarios y todo lo relacionado con tu vida universitaria. En cuanto a recetas de cocina, como la masa de pizza, no es mi área de ayuda. Te sugiero buscar en sitios de recetas o en YouTube, donde encontrarás muchas guías paso a paso. Si necesitas cualquier cosa relacionada con tus estudios o la organización académica, aquí estoy para ayudarte. ¡Éxitos!",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -132,7 +134,7 @@
       "herramientas_esperadas": [],
       "herramientas_usadas": [],
       "pasos": 1,
-      "respuesta": "¡Claro! Para crear la tarea necesito saber dos cosas:\n\n1. ¿En qué ramo (asignatura) está la prueba de Machine Learning?  \n2. ¿Cuál es la fecha de entrega o el día de la prueba (formato AAAA‑MM‑DD)?\n\n¡Avísame y lo registro enseguida!",
+      "respuesta": "¡Claro! Para crear la tarea necesito saber dos cosas más:\n\n1. ¿En qué ramo (asignatura) está la prueba de Machine Learning?  \n2. ¿Cuál es la fecha de entrega o el día de la prueba (formato AAAA‑MM‑DD)?\n\nCuando me pases esos datos, la anoto de inmediato.",
       "errores_herramienta": [],
       "resultado": "PASS"
     },
@@ -149,7 +151,7 @@
             "crear_tarea"
           ],
           "errores_herramienta": [],
-          "respuesta": "¡Listo! La prueba de Álgebra del ramo **MAT6130** está anotada para el **2026‑11‑05** con una ponderación del **20 %**. Si necesitas organizar la semana o cualquier otra cosa, avísame.",
+          "respuesta": "¡Listo! La prueba de Álgebra del ramo MAT6130 está anotada para el 2026‑11‑05 con una ponderación del 20 %. Si necesitas organizar la semana o ver qué sigue, avísame.",
           "resultado": "PASS"
         },
         {
@@ -157,7 +159,7 @@
           "herramientas_esperadas": [],
           "herramientas_usadas": [],
           "errores_herramienta": [],
-          "respuesta": "Faltan **14 días** para la prueba de Álgebra del ramo MAT6130 (2026‑11‑05). ¡Ánimo con la preparación!",
+          "respuesta": "Faltan **14 días** para la prueba de Álgebra del ramo MAT6130 (del 2026‑11‑05). ¡Ánimo con el estudio!",
           "resultado": "PASS"
         }
       ],
