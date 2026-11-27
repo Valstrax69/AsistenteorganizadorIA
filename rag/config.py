@@ -46,7 +46,15 @@ DB_NAME = _BASE_DB_NAME if ENVIRONMENT == "main" else f"{_BASE_DB_NAME}-{ENVIRON
 CHUNKS_COLLECTION = "chunks"
 CONVERSATIONS_COLLECTION = "conversaciones"
 FEEDBACK_COLLECTION = "feedback"
+# Datos academicos sobre los que opera el agente (lectura y escritura).
+TAREAS_COLLECTION = "tareas"
+ASISTENCIA_COLLECTION = "asistencia"
 VECTOR_INDEX_NAME = os.getenv("VECTOR_INDEX_NAME", "vector_index")
+
+# Identificador del estudiante. El proyecto es de un solo usuario, pero los
+# documentos lo guardan para no tener que migrar si despues hay varios.
+USUARIO_ID = os.getenv("USUARIO_ID", "estudiante")
+ASISTENCIA_MINIMA = int(os.getenv("ASISTENCIA_MINIMA", "70"))
 
 # --- Embeddings (locales, sentence-transformers) --------------------------
 # El corpus del curso está en español => modelo multilingüe.
@@ -57,15 +65,21 @@ EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))
 
 # --- LLM (Groq) -----------------------------------------------------------
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-# Modelo NO de razonamiento (no emite <think>), apto para free tier. Los qwen3
-# razonan en voz alta y en free tier truncan antes de responder. IDs válidos
-# en https://console.groq.com/docs/models
-GROQ_MODEL = os.getenv("GROQ_MODEL", "groq/compound-mini")
+# IMPORTANTE: el modelo tiene que soportar function calling (que el LLM pueda
+# pedir la ejecucion de una herramienta). Los sistemas "compound" de Groq NO
+# aceptan herramientas propias, por eso ya no sirven para este agente.
+# gpt-oss-120b figura en el plan gratuito. IDs en console.groq.com/docs/models
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.3"))
-LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "512"))
+LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "1024"))
+# Tope de vueltas del ciclo del agente: evita que se quede llamando
+# herramientas para siempre si se confunde.
+MAX_PASOS_AGENTE = int(os.getenv("MAX_PASOS_AGENTE", "5"))
 
 # --- Retrieval / chunking -------------------------------------------------
-TOP_K = int(os.getenv("TOP_K", "5"))
+# Bajo en 3 (antes 5) porque el agente manda mas cosas en cada llamada
+# (esquema de herramientas + historial) y el plan gratuito limita por minuto.
+TOP_K = int(os.getenv("TOP_K", "3"))
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "800"))
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "150"))
 
@@ -76,7 +90,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 # --- Contexto conversacional ----------------------------------------------
 # Cantidad máxima de mensajes previos (user+assistant) que se envían al LLM
 # como memoria de la conversación. Acota el crecimiento de tokens.
-MAX_HISTORY_MSGS = int(os.getenv("MAX_HISTORY_MSGS", "6"))
+MAX_HISTORY_MSGS = int(os.getenv("MAX_HISTORY_MSGS", "4"))
 
 # --- Fuente externa (búsqueda web) ----------------------------------------
 # La rúbrica pide integrar fuentes internas Y externas. Además de los PDFs
@@ -86,3 +100,10 @@ EXTERNAL_TOP_K = int(os.getenv("EXTERNAL_TOP_K", "3"))
 # Se agrega a cada consulta web para que los resultados salgan relacionados
 # al dominio (DuocUC y sus carreras), no temas al azar.
 EXTERNAL_QUERY_CONTEXT = os.getenv("EXTERNAL_QUERY_CONTEXT", "DuocUC Chile informática diseño administración")
+
+# Telemetría local independiente del historial de conversación.
+OBS_ACTIVA = os.getenv("OBS_ACTIVA", "true").lower() == "true"
+OBS_DB = os.getenv("OBS_DB", ".observabilidad/trazas.sqlite3")
+OBS_RETENCION_DIAS = max(1, int(os.getenv("OBS_RETENCION_DIAS", "14")))
+# Solo para la instalación personal de un estudiante.
+MEMORIA_PERSONAL = os.getenv("MEMORIA_PERSONAL", "false").lower() == "true"

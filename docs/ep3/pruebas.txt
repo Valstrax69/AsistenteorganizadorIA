@@ -1,0 +1,26 @@
+test_cinco_tareas_funcionales (evaluation.test_observabilidad.ObservabilidadTest.test_cinco_tareas_funcionales) ... ok
+test_concurrencia_retencion_desactivacion (evaluation.test_observabilidad.ObservabilidadTest.test_concurrencia_retencion_desactivacion) ... ok
+test_conteo_del_proveedor (evaluation.test_observabilidad.ObservabilidadTest.test_conteo_del_proveedor) ... ok
+test_disco_inaccesible_no_interrumpe_agente (evaluation.test_observabilidad.ObservabilidadTest.test_disco_inaccesible_no_interrumpe_agente) ... ok
+test_error_no_filtra_texto_del_proveedor (evaluation.test_observabilidad.ObservabilidadTest.test_error_no_filtra_texto_del_proveedor) ... ok
+test_json_incrustado_y_vista_vacia (evaluation.test_observabilidad.ObservabilidadTest.test_json_incrustado_y_vista_vacia) ... ok
+test_memoria_excluye_otro_perfil_y_filas_sin_dueno (evaluation.test_observabilidad.ObservabilidadTest.test_memoria_excluye_otro_perfil_y_filas_sin_dueno) ... ok
+test_oraculo_rechaza_duplicados (evaluation.test_observabilidad.ObservabilidadTest.test_oraculo_rechaza_duplicados) ... ok
+test_registra_incidentes_inyectados (evaluation.test_observabilidad.ObservabilidadTest.test_registra_incidentes_inyectados) ... ok
+test_tope_no_muestra_salida_de_herramienta (evaluation.test_observabilidad.ObservabilidadTest.test_tope_no_muestra_salida_de_herramienta) ... ok
+test_web_desactivada_no_envia_consultas (evaluation.test_observabilidad.ObservabilidadTest.test_web_desactivada_no_envia_consultas) ... ok
+test_chat_genera_traza_que_lee_el_monitor (evaluation.test_interfaz_ep3.InterfazTest.test_chat_genera_traza_que_lee_el_monitor) ... 2026-11-25 23:45:35.971 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-25 23:45:36.306 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.492s
+
+OK
+[PASS] una herramienta: usadas=['listar_tareas'] pasos=2
+[PASS] encadenado: usadas=['mover_tarea', 'planificar_semana'] pasos=3
+[PASS] sin herramientas: usadas=[] pasos=1
+[PASS] herramienta que falla: respuesta='No pude leer tus tareas ahora.'
+[PASS] tope de pasos: pasos=5 (tope 5)
+
+5/5 PASS

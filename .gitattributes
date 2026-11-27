@@ -3,3 +3,6 @@
 *.sh text eol=lf
 entrypoint.sh text eol=lf
 Dockerfile text eol=lf
+
+# Los PDF conservan sus offsets binarios en todos los sistemas.
+*.pdf binary

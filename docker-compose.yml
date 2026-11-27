@@ -8,10 +8,15 @@ services:
         EMBEDDING_MODEL: intfloat/multilingual-e5-small
     image: rag-duoc-groq:latest
     ports:
-      - "8501:8501"
+      - "127.0.0.1:8501:8501"
     env_file:
       - .env
     environment:
       # Poner "true" para que el contenedor cree el índice e ingeste al arrancar.
       INIT_ON_START: "${INIT_ON_START:-false}"
+    volumes:
+      - trazas:/app/.observabilidad
     restart: unless-stopped
+
+volumes:
+  trazas:

@@ -19,3 +19,6 @@ hf_cache/
 .vscode/
 .idea/
 .DS_Store
+
+.observabilidad/
+*.sqlite3*

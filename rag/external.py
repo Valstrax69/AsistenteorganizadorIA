@@ -50,7 +50,7 @@ def buscar_web(consulta: str, k: int = 3) -> list[ResultadoWeb]:
         with DDGS() as ddgs:
             crudos = list(ddgs.text(consulta, max_results=k))
     except Exception as exc:  # noqa: BLE001
-        logger.warning("Falló la búsqueda web (fuente externa): %s", exc)
+        logger.warning("Falló la búsqueda web (fuente externa): %s", type(exc).__name__)
         return []
 
     resultados = []
@@ -62,5 +62,5 @@ def buscar_web(consulta: str, k: int = 3) -> list[ResultadoWeb]:
                 texto=(r.get("body") or "").strip(),
             )
         )
-    logger.info("Fuente externa: %d resultados web para '%s...'", len(resultados), consulta[:50])
+    logger.info("Fuente externa: %d resultados.", len(resultados))
     return resultados

@@ -27,7 +27,7 @@ import streamlit.components.v1 as components
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from rag import config, vectorstore  # noqa: E402
-from rag.generator import get_rag_generator  # noqa: E402
+from rag.agente import get_agente  # noqa: E402
 from rag.ingest import ingestar_desde_github  # noqa: E402
 
 st.set_page_config(
@@ -135,6 +135,11 @@ def _encabezado() -> None:
 
 def _panel_opciones() -> None:
     with st.expander("⚙️ Opciones y administración", expanded=False):
+        if config.MEMORIA_PERSONAL:
+            st.checkbox("Guardar este chat y consultar memoria de mi instalación personal", key="recordar")
+        st.caption("El modelo recibe la consulta y el contexto necesario para responder. "
+                   "Las herramientas de tareas y asistencia guardan los cambios solicitados. "
+                   "Evita ingresar RUT, correos o datos sensibles.")
         st.caption("Descarga e indexa los archivos .md del repositorio configurado en `GITHUB_REPO`.")
         col_a, col_b = st.columns(2)
         if col_a.button("📥 Ingestar material (.md)", use_container_width=True):
@@ -144,7 +149,7 @@ def _panel_opciones() -> None:
                     total = sum(r.chunks_insertados for r in resultados)
                     st.success(f"Ingesta completa: {len(resultados)} archivos, {total} chunks.")
                 except Exception as exc:  # noqa: BLE001
-                    st.error(f"Error durante la ingesta: {exc}")
+                    st.error("La ingesta no se completó. Revisa la configuración del repositorio y del índice.")
         if col_b.button("🗑️ Nueva conversación", use_container_width=True):
             st.session_state.session_id = str(uuid.uuid4())
             st.session_state.mensajes = []
@@ -161,8 +166,8 @@ def _feedback(indice: int, mensaje: dict) -> None:
         if col.button(etiqueta, key=f"{calificacion}_{indice}"):
             vectorstore.guardar_feedback(
                 session_id=st.session_state.session_id,
-                pregunta=mensaje.get("pregunta", ""),
-                respuesta=mensaje["contenido"],
+                pregunta="",
+                respuesta="",
                 calificacion=calificacion,
             )
             st.session_state[key] = etiqueta
@@ -176,16 +181,25 @@ def _render_mensajes() -> None:
         with st.chat_message(m["rol"]):
             st.markdown(m["contenido"])
             if m["rol"] == "assistant":
-                if m.get("fuentes"):
-                    with st.expander("📚 Fuentes usadas (internas y externas)"):
-                        for f in m["fuentes"]:
-                            enc = f"**{f['fuente']}**"
-                            if f.get("score") is not None:
-                                enc += f" (score: {f['score']})"
-                            st.markdown(enc)
-                            if f.get("url"):
-                                st.caption(f"🔗 {f['url']}")
-                            st.caption((f.get("texto") or "")[:300] + "...")
+                diag = m.get("diagnostico")
+                if diag:
+                    with st.expander("🔧 Detalles técnicos (qué decidió el agente)"):
+                        if diag.get("traza"):
+                            st.caption(f"Traza del turno · {diag['traza']}")
+                        usadas = diag.get("herramientas") or []
+                        st.markdown(
+                            f"**Herramientas llamadas:** "
+                            f"{' → '.join(usadas) if usadas else 'ninguna (respondió directo)'}"
+                        )
+                        st.markdown(f"**Pasos del ciclo:** {diag.get('pasos', 0)}")
+                        st.markdown(
+                            f"**Memoria de largo plazo:** "
+                            f"{'sí' if diag.get('memoria_larga') else 'no'}"
+                        )
+                        st.caption(
+                            f"tokens entrada {diag.get('tokens_entrada', 0)} · "
+                            f"salida {diag.get('tokens_salida', 0)}"
+                        )
                 _feedback(i, m)
 
 
@@ -212,29 +226,48 @@ def main() -> None:
         return
 
     st.session_state.mensajes.append({"rol": "user", "contenido": pregunta})
-    vectorstore.guardar_mensaje(st.session_state.session_id, "user", pregunta)
+    if st.session_state.get("recordar"):
+        vectorstore.guardar_mensaje(st.session_state.session_id, "user", pregunta)
 
-    with st.spinner("Pensando..."):
-        resultado = get_rag_generator().responder(
-            pregunta, historial=st.session_state.mensajes[:-1]
-        )
+    with st.spinner("Pensando y usando herramientas..."):
+        try:
+            resultado = get_agente().responder(
+                pregunta,
+                historial=st.session_state.mensajes[:-1],
+                session_id=st.session_state.session_id if st.session_state.get("recordar") else None,
+            )
+        except Exception as exc:  # noqa: BLE001
+            texto = str(exc)
+            if "rate" in texto.lower() or "429" in texto:
+                st.error("Se alcanzó el límite de peticiones de Groq. Espera un momento.")
+            else:
+                st.error("El agente no pudo completar la consulta. Revisa el monitor local.")
+            return
 
     st.session_state.mensajes.append(
         {
             "rol": "assistant",
             "contenido": resultado.respuesta,
             "pregunta": pregunta,
-            "fuentes": resultado.fuentes,
+            "diagnostico": {
+                "traza": resultado.traza_id,
+                "herramientas": resultado.herramientas_usadas,
+                "pasos": resultado.pasos,
+                "memoria_larga": resultado.memoria_larga_usada,
+                "tokens_entrada": resultado.tokens_entrada,
+                "tokens_salida": resultado.tokens_salida,
+            },
         }
     )
-    vectorstore.guardar_mensaje(
-        session_id=st.session_state.session_id,
-        rol="assistant",
-        contenido=resultado.respuesta,
-        fuentes=resultado.fuentes,
-        tokens_entrada=resultado.tokens_entrada,
-        tokens_salida=resultado.tokens_salida,
-    )
+    if st.session_state.get("recordar"):
+        vectorstore.guardar_mensaje(
+            session_id=st.session_state.session_id,
+            rol="assistant",
+            contenido=resultado.respuesta,
+            fuentes=[{"fuente": h} for h in resultado.herramientas_usadas],
+            tokens_entrada=resultado.tokens_entrada,
+            tokens_salida=resultado.tokens_salida,
+        )
     st.rerun()
 
 

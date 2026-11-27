@@ -31,7 +31,7 @@ RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTr
 COPY . .
 
 # Ejecutar como usuario no root (buena práctica; evita warnings de seguridad).
-RUN useradd -r -d /app appuser && chown -R appuser:appuser /app
+RUN mkdir -p /app/.observabilidad && useradd -r -d /app appuser && chown -R appuser:appuser /app
 USER appuser
 
 EXPOSE 8501

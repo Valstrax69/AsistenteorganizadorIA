@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monitor del agente académico</title>
+<style>
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f3f6f6;
+    color: #18343d;
+    font: 15px/1.5 "Segoe UI", Arial, sans-serif
+}
+
+main {
+    max-width: 1290px;
+    margin: auto;
+    padding: 25px 34px 54px
+}
+
+header {
+    background: #122f38;
+    color: white;
+    padding: 22px max(34px, calc((100% - 1222px)/2));
+    border-bottom: 5px solid #35b4a4
+}
+
+header p {
+    color: #a6e7dc;
+    font-weight: 650;
+    margin: 0
+}
+
+h1 {
+    font-size: 34px;
+    line-height: 1.16;
+    margin: 5px 0
+}
+
+h2 {
+    font-size: 19px;
+    margin: 0 0 8px
+}
+
+p {
+    margin: 0
+}
+
+label {
+    display: grid;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 650
+}
+
+select {
+    background: #fff;
+    border: 1px solid #9aaeb2;
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: #18343d;
+    max-width: 100%;
+    font: inherit
+}
+
+#filtros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px
+}
+
+#kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px 0
+}
+
+.card,
+article {
+    background: white;
+    border: 1px solid #cedbdb;
+    border-radius: 10px
+}
+
+.card {
+    padding: 12px 15px;
+    min-height: 95px
+}
+
+.card strong {
+    display: block;
+    font-size: 27px;
+    line-height: 1.3;
+    color: #075d58
+}
+
+.card small,
+.nota {
+    font-size: 13px;
+    color: #49636c
+}
+
+.panes {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 14px;
+    margin: 12px 0
+}
+
+article {
+    padding: 16px 20px;
+    min-width: 0
+}
+
+.bar {
+    display: grid;
+    grid-template-columns: minmax(100px, 1.4fr) minmax(34px, 1fr) 75px;
+    gap: 9px;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 13px
+}
+
+.rail {
+    border-radius: 4px;
+    height: 10px;
+    background: #e3edec;
+    overflow: hidden
+}
+
+.fill {
+    height: 100%;
+    background: #008275
+}
+
+.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums
+}
+
+.estado-ok {
+    color: #006d61
+}
+
+.estado-fallo {
+    color: #953b23
+}
+
+#detalle {
+    margin-top: 14px
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px
+}
+
+th,
+td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #dbe4e4
+}
+
+th {
+    background: #eef5f4;
+    color: #31545e
+}
+
+#elegir {
+    width: 100%;
+    max-width: 600px
+}
+
+#meta {
+    margin: 6px 0 10px;
+    color: #44636a;
+    font-size: 13px
+}
+
+#contexto {
+    color: #3e5d63;
+    font-size: 14px;
+    margin-bottom: 10px
+}
+
+.wide {
+    overflow-x: auto
+}
+
+.mono {
+    font-variant-numeric: tabular-nums
+}
+
+.nota {
+    margin-bottom: 8px
+}
+
+@media(max-width:700px) {
+    main {
+        padding: 16px
+    }
+
+    header {
+        padding: 18px 16px
+    }
+
+    #kpis {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .panes,
+    #filtros {
+        grid-template-columns: 1fr
+    }
+
+    .bar {
+        grid-template-columns: 1.15fr 1fr 65px
+    }
+}
+
+@media print {
+    body {
+        background: white
+    }
+
+    select {
+        border: 0
+    }
+}
+</style></head><body>
+<header><p>Asistente Organizador Académico</p><h1>Monitor del agente</h1></header>
+
+<main>
+
+<section id="filtros" aria-label="Filtros"><label>Origen<select id="origen"></select></label><label>Escenario<select id="caso"></select></label><label>Resultado del turno<select id="estado"></select></label></section>
+<p id="contexto" aria-live="polite"></p>
+<section id="kpis" aria-label="Indicadores"></section>
+<div class="panes"><article><h2>Latencia por escenario</h2><p class="nota">P95 del turno en milisegundos · rango más próximo</p><div id="latencias"></div></article>
+<article><h2>Tiempo acumulado por etapa</h2><p class="nota">Suma de los tramos de las ejecuciones seleccionadas</p><div id="etapas"></div><h2 style="margin-top:18px">Incidencias por estado</h2><div id="incidencias"></div></article></div>
+<article id="detalle"><h2>Inspección de una traza</h2><label>Turno<select id="elegir"></select></label><p id="meta"></p><div class="wide"><table><thead><tr><th>Paso</th><th>Etapa</th><th>Herramienta</th><th>Inicio (ms)</th><th>Duración (ms)</th><th>Estado</th></tr></thead><tbody id="eventos"></tbody></table></div></article>
+</main><script id="datos" type="application/json">__TRAZAS_EP3__</script><script>
+"use strict";
+const $ = id => document.getElementById(id);
+const todos = JSON.parse($("datos").textContent).map(t => ({
+    origen: "Agente en uso",
+    caso: "Sin etiqueta",
+    ...t
+}));
+const formato = (v, d = 2) => v == null ? "s/d" : v.toLocaleString("es-CL", {
+    maximumFractionDigits: d
+});
+const pct = (a, b) => b ? formato(100 * a / b, 1) + " %" : "s/d";
+const pctl = (vs, p) => vs.length ? [...vs].sort((a, b) => a - b)[Math.ceil(p * vs.length) - 1] : null;
+
+function node(tipo, texto, clase) {
+    const el = document.createElement(tipo);
+    el.textContent = texto;
+    if (clase) el.className = clase;
+    return el
+}
+
+function agrupar(datos, fn) {
+    const out = new Map();
+    for (const v of datos) {
+        const k = fn(v);
+        if (!out.has(k)) out.set(k, []);
+        out.get(k).push(v)
+    }
+    return out
+}
+
+function opciones(sel, opciones, titulo) {
+    const old = sel.value;
+    sel.replaceChildren();
+    if (titulo) sel.add(new Option(titulo, ""));
+    for (const [v, k] of opciones) sel.add(new Option(k, v));
+    if ([...sel.options].some(o => o.value === old)) sel.value = old
+}
+
+function card(nombre, v, detalle) {
+    const el = node("div", "", "card");
+    el.append(node("span", nombre), node("strong", v), node("small", detalle));
+    $("kpis").append(el)
+}
+
+function barras(id, pares, unidad) {
+    const box = $(id);
+    box.replaceChildren();
+    if (!pares.length) {
+        box.append(node("p", "Sin registros.", "nota"));
+        return
+    }
+    const max = Math.max(...pares.map(x => x[1]), 0.00001);
+    for (const [k, v] of pares.sort((a, b) => b[1] - a[1])) {
+        const row = node("div", "", "bar"),
+            rail = node("div", "", "rail"),
+            fill = node("div", "", "fill");
+        fill.style.width = (v / max * 100) + "%";
+        rail.append(fill);
+        row.append(node("span", k), rail, node("span", formato(v) + " " + unidad, "num"));
+        box.append(row)
+    }
+}
+
+function firma(t) {
+    return JSON.stringify([t.estado, t.evaluada, t.eventos.filter(e => e.herramienta).map(e => e.herramienta)])
+}
+
+function concordancia(datos) {
+    let pares = 0,
+        iguales = 0;
+    for (const filas of agrupar(datos.filter(t => t.variante != null), t => JSON.stringify([t.origen, t.caso, t.variante])).values()) {
+        pares += filas.length * (filas.length - 1) / 2;
+        for (const grupo of agrupar(filas, firma).values()) iguales += grupo.length * (grupo.length - 1) / 2;
+    }
+    return [iguales, pares]
+}
+
+function traza(filas) {
+    const t = filas.find(x => x.id === $("elegir").value);
+    $("eventos").replaceChildren();
+    $("meta").textContent = t ? [t.utc, "UTC", t.id, "CPU " + formato(t.cpu_ms) + " ms"].join(" · ") : "No hay trazas para estos filtros.";
+    if (t)
+        for (const e of t.eventos) {
+            const tr = node("tr", "");
+            for (const v of [e.paso || "—", e.etapa, e.herramienta || "—", formato(e.inicio_ms, 3), formato(e.ms, 3), e.estado]) tr.append(node("td", v));
+            tr.lastChild.className = e.estado === "ok" ? "estado-ok" : "estado-fallo";
+            $("eventos").append(tr)
+        }
+}
+
+function mostrar() {
+    const base = todos.filter(t => !$("origen").value || t.origen === $("origen").value);
+    opciones($("caso"), [...new Set(base.map(t => t.caso))].map(x => [x, x]), "Todos los escenarios");
+    const escenarios = base.filter(t => !$("caso").value || t.caso === $("caso").value);
+    opciones($("estado"), [...new Set(escenarios.map(t => t.estado))].map(x => [x, x]), "Todos los estados");
+    const filas = escenarios.filter(t => !$("estado").value || t.estado === $("estado").value);
+    $("contexto").textContent = filas.length + " turnos seleccionados. " + (filas.some(t => t.origen === "Banco controlado") ? "El banco usa un modelo guionizado y herramientas Python reales con datos en memoria." : "Origen según el registro de ejecución.");
+    const evaluadas = filas.filter(t => typeof t.evaluada === "boolean"),
+        aprobadas = evaluadas.filter(t => t.evaluada).length;
+    const [iguales, pares] = concordancia(filas);
+    const incidentes = filas.filter(t => t.estado !== "ok");
+    const tokens = filas.map(t => t.tokens).filter(Number.isFinite);
+    $("kpis").replaceChildren();
+    card("Precisión funcional", pct(aprobadas, evaluadas.length), aprobadas + " / " + evaluadas.length + " con ruta y contenido correctos");
+    card("Consistencia operativa", pct(iguales, pares), iguales + " / " + pares + " pares concordantes");
+    card("Turnos con incidencia", pct(incidentes.length, filas.length), incidentes.length + " / " + filas.length + " con estado distinto de ok");
+    card("Latencia P95", formato(pctl(filas.map(t => t.ms), .95)) + " ms", "P50 · " + formato(pctl(filas.map(t => t.ms), .5)) + " ms");
+    card("CPU del hilo · P50", formato(pctl(filas.map(t => t.cpu_ms), .5)) + " ms", "Tiempo de CPU local por turno");
+    card("Tokens por turno · P50", formato(pctl(tokens, .5)), tokens.length + " turnos con conteo del proveedor");
+    const ev = filas.flatMap(t => t.eventos);
+    card("Llamadas al modelo", formato(ev.filter(e => e.etapa === "modelo").length, 0), "Incluye los intentos fallidos");
+    card("Herramientas ejecutadas", formato(ev.filter(e => e.etapa === "herramienta").length, 0), "Tramos de herramienta registrados");
+    barras("latencias", [...agrupar(filas, t => t.caso)].map(([k, vs]) => [k, pctl(vs.map(t => t.ms), .95)]), "ms");
+    barras("etapas", [...agrupar(ev, e => e.etapa)].map(([k, vs]) => [k, vs.reduce((a, e) => a + e.ms, 0)]), "ms");
+    barras("incidencias", [...agrupar(incidentes, t => t.estado)].map(([k, vs]) => [k, vs.length]), "turnos");
+    opciones($("elegir"), filas.map(t => [t.id, t.caso + " · " + t.estado + " · " + t.id.slice(0, 10)]));
+    traza(filas);
+    $("elegir").onchange = () => traza(filas)
+}
+opciones($("origen"), [...new Set(todos.map(t => t.origen))].map(x => [x, x]), "Todos los orígenes");
+for (const id of ["origen", "caso", "estado"]) $(id).onchange = mostrar;
+mostrar();
+</script></body></html>

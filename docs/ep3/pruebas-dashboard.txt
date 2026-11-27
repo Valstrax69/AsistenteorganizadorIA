@@ -1,0 +1,6 @@
+Dashboard servido como archivo local en Chromium.
+48 turnos disponibles; 30/30 aciertos; 48/48 pares; 18/48 incidencias.
+Filtro «fallo de herramienta»: 6 turnos; se encontró timeout en la etapa de herramienta.
+Filtro «error»: 6 turnos; cada traza seleccionada muestra memoria y modelo (se verificó la primera).
+Vista 390 px sin desplazamiento horizontal del documento.
+Sin errores JavaScript durante esta prueba.

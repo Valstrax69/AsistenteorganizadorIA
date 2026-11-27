@@ -1,6 +1,78 @@
-# Arquitectura — RAG DuocUC (Groq)
+# Arquitectura — Asistente Organizador Académico (Agente, LangChain + Groq)
 
-## Diagrama de flujo
+## 1. Orquestación del agente
+
+El modelo recibe el prompt del sistema, la memoria y la pregunta, y **decide solo** qué herramientas llamar. Cada resultado vuelve al modelo, que puede pedir otra herramienta o cerrar con la respuesta final. El tope de vueltas lo fija `MAX_PASOS_AGENTE`.
+
+```mermaid
+flowchart TD
+    U[Estudiante] --> APP[Streamlit]
+    APP --> AG[agente.py<br/>ciclo ReAct]
+
+    MC[(Memoria corto plazo<br/>historial de sesión)] --> AG
+    ML[(Memoria largo plazo<br/>Mongo: conversaciones)] --> AG
+
+    AG -->|bind_tools| LLM[Groq<br/>gpt-oss-120b]
+    LLM -->|¿pide herramienta?| DEC{tool_calls}
+
+    DEC -->|sí| T[herramientas.py]
+    DEC -->|no| R[Respuesta final]
+
+    subgraph Consulta
+        T --> T1[buscar_material]
+        T --> T2[buscar_en_web]
+        T --> T3[listar_tareas]
+        T --> T4[estado_asistencia]
+    end
+    subgraph Escritura
+        T --> T5[crear_tarea]
+        T --> T6[mover_tarea]
+        T --> T7[registrar_asistencia]
+    end
+    subgraph Razonamiento
+        T --> T8[planificar_semana]
+    end
+
+    T1 -->|$vectorSearch| D[(Mongo: chunks)]
+    T2 --> W[Búsqueda web]
+    T3 --> TA[(Mongo: tareas)]
+    T5 --> TA
+    T6 --> TA
+    T8 --> TA
+    T4 --> AS[(Mongo: asistencia)]
+    T7 --> AS
+
+    T -->|ToolMessage| AG
+    R --> APP
+    APP -->|respuesta + detalles técnicos| U
+```
+
+## 2. Decisiones de diseño del agente
+
+| Decisión | Por qué |
+|---|---|
+| Ciclo ReAct escrito a mano, no un grafo | ~30 líneas legibles y defendibles en la presentación, en vez de una abstracción que hay que creerle. El framework (LangChain) se usa donde aporta: `@tool` y `bind_tools`. |
+| Modelo con function calling obligatorio | Los sistemas `compound` de Groq no aceptan herramientas propias. |
+| Prioridad determinista en Python | `planificar_semana` no delega el criterio al LLM: es reproducible y testeable. |
+| `TOP_K` 5 → 3 y `MAX_HISTORY_MSGS` 6 → 4 | Cada llamada del agente carga además el esquema de herramientas; el plan gratuito limita por minuto. |
+| Memoria larga sobre `conversaciones` | La colección ya existía y se escribía, pero nadie la leía. |
+| Tope de pasos del ciclo | Evita bucles infinitos de llamadas si el modelo se confunde. |
+
+## 3. Matriz pauta EP2 → evidencia en el repositorio
+
+| Criterio | Evidencia | Archivo |
+|---|---|---|
+| IE1 · Herramientas con autonomía | 8 herramientas (consulta, escritura, razonamiento) | `rag/herramientas.py` |
+| IE2 · Framework de agentes | LangChain: `@tool` + `ChatGroq.bind_tools` | `rag/agente.py`, `requirements.txt` |
+| IE3 · Memoria y continuidad | Corto plazo (`_memoria_corto_plazo`) y largo plazo (`obtener_memoria_larga`) | `rag/agente.py`, `rag/vectorstore.py` |
+| IE4 · Recuperación semántica | `$vectorSearch` + embeddings E5, expuesto como herramienta | `rag/retriever.py`, `rag/herramientas.py` |
+| IE5 · Planificación y prioridades | `planificar_semana`, criterio ponderación/días | `rag/herramientas.py` |
+| IE6 · Informe con diagramas | Diagrama de orquestación y tabla de decisiones | este archivo |
+| IE7 · Ejemplos de decisión | 10 casos funcionales con PASS/FAIL versionado | `evaluation/casos_agente.json`, `resultados_agente.json` |
+| IE8 · Diagrama + README | Arquitectura del agente y guía de ejecución | este archivo, `README.md` |
+| IE9 · Justificación de componentes | Tabla de decisiones de diseño | sección 2 de este archivo |
+
+## 4. Diagrama de flujo del RAG (base heredada de la EP1)
 
 ```mermaid
 flowchart TD

@@ -36,11 +36,11 @@ class Retriever:
         self.top_k = top_k or config.TOP_K
         self.embeddings = get_embeddings()
 
-    def buscar(self, consulta: str, top_k: int | None = None) -> list[Fragmento]:
+    def buscar(self, consulta: str, top_k: int | None = None, *, propagar_error: bool = False) -> list[Fragmento]:
         if not consulta or not consulta.strip():
             return []
         vector = self.embeddings.embed_query(consulta)
-        docs = vectorstore.vector_search(vector, top_k=top_k or self.top_k)
+        docs = vectorstore.vector_search(vector, top_k=top_k or self.top_k, propagar_error=propagar_error)
         fragmentos = [
             Fragmento(
                 texto=d.get("texto", ""),
@@ -50,7 +50,7 @@ class Retriever:
             )
             for d in docs
         ]
-        logger.info("Retrieval '%s...': %d fragmentos.", consulta[:50], len(fragmentos))
+        logger.info("Retrieval: %d fragmentos.", len(fragmentos))
         return fragmentos
 
     @staticmethod

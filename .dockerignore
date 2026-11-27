@@ -24,3 +24,6 @@ evaluation/results.json
 # Documentación (no necesaria en runtime). OJO: NO excluir data/*.md (material).
 docs/
 /README.md
+
+.observabilidad/
+*.sqlite3*

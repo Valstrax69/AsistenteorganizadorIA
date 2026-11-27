@@ -46,7 +46,7 @@ def ping() -> bool:
         get_client().admin.command("ping")
         return True
     except Exception as exc:  # noqa: BLE001
-        logger.warning("Sin conexión a MongoDB: %s", exc)
+        logger.warning("Sin conexión a MongoDB: %s", type(exc).__name__)
         return False
 
 
@@ -67,7 +67,7 @@ def contar_chunks() -> int:
     return get_collection(config.CHUNKS_COLLECTION).count_documents({})
 
 
-def vector_search(query_embedding: list[float], top_k: int | None = None) -> list[dict[str, Any]]:
+def vector_search(query_embedding: list[float], top_k: int | None = None, *, propagar_error: bool = False) -> list[dict[str, Any]]:
     """Ejecuta `$vectorSearch` sobre la colección `chunks`."""
     top_k = top_k or config.TOP_K
     coleccion = get_collection(config.CHUNKS_COLLECTION)
@@ -91,8 +91,10 @@ def vector_search(query_embedding: list[float], top_k: int | None = None) -> lis
             "Falló el vector search. ¿Creaste el índice con scripts/create_index.py "
             "y coincide EMBEDDING_DIM (%s) con el índice? Detalle: %s",
             config.EMBEDDING_DIM,
-            exc,
+            type(exc).__name__,
         )
+        if propagar_error:
+            raise
         return []
 
 
@@ -110,6 +112,7 @@ def guardar_mensaje(
     (el historial es deseable, no imprescindible)."""
     documento = {
         "session_id": session_id,
+        "usuario": config.USUARIO_ID,
         "rol": rol,  # "user" | "assistant"
         "contenido": contenido,
         "fuentes": fuentes or [],
@@ -121,7 +124,30 @@ def guardar_mensaje(
     try:
         get_collection(config.CONVERSATIONS_COLLECTION).insert_one(documento)
     except Exception as exc:  # noqa: BLE001
-        logger.warning("No se pudo guardar el mensaje (Mongo): %s", exc)
+        logger.warning("No se pudo guardar el mensaje (Mongo): %s", type(exc).__name__)
+
+
+def obtener_memoria_larga(session_id_actual: str, limite: int = 6) -> list[dict[str, Any]]:
+    """Memoria de largo plazo: trae los ultimos mensajes de OTRAS sesiones.
+
+    La memoria de corto plazo es el historial de la conversacion abierta. Esta
+    es la de largo plazo: lo que el estudiante dijo en sesiones anteriores, que
+    sigue guardado en Mongo aunque haya cerrado la app.
+    """
+    try:
+        cursor = (
+            get_collection(config.CONVERSATIONS_COLLECTION)
+            .find(
+                {"usuario": config.USUARIO_ID, "session_id": {"$ne": session_id_actual}, "rol": "user"},
+                {"_id": 0, "contenido": 1, "creado_en": 1},
+            )
+            .sort("creado_en", -1)
+            .limit(limite)
+        )
+        return list(cursor)[::-1]
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("No se pudo leer la memoria larga (Mongo): %s", type(exc).__name__)
+        return []
 
 
 def obtener_historial(session_id: str) -> list[dict[str, Any]]:
@@ -133,7 +159,7 @@ def obtener_historial(session_id: str) -> list[dict[str, Any]]:
         )
         return list(cursor)
     except Exception as exc:  # noqa: BLE001
-        logger.warning("No se pudo leer el historial (Mongo): %s", exc)
+        logger.warning("No se pudo leer el historial (Mongo): %s", type(exc).__name__)
         return []
 
 
@@ -157,4 +183,4 @@ def guardar_feedback(
     try:
         get_collection(config.FEEDBACK_COLLECTION).insert_one(documento)
     except Exception as exc:  # noqa: BLE001
-        logger.warning("No se pudo guardar el feedback (Mongo): %s", exc)
+        logger.warning("No se pudo guardar el feedback (Mongo): %s", type(exc).__name__)

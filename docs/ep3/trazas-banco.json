@@ -1,0 +1,2342 @@
+[
+  {
+    "id": "524a3baaf36c4876a2ef445f3c3a2344",
+    "utc": "2026-11-26T02:38:45.548643+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0257,
+        "ms": 0.0081
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0687,
+        "ms": 0.0469
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.1218,
+        "herramienta": "listar_tareas",
+        "ms": 20.9578
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 21.1093,
+        "ms": 0.0175
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 21.1384,
+    "cpu_ms": 15.625,
+    "caso": "agenda breve",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "b1a83bcbc8154f2b8fd460f1ccee6eaa",
+    "utc": "2026-11-26T02:38:45.570643+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0229,
+        "ms": 0.0034
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0466,
+        "ms": 0.0224
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0741,
+        "herramienta": "listar_tareas",
+        "ms": 0.3588
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4501,
+        "ms": 0.012
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.4707,
+    "cpu_ms": 0.0,
+    "caso": "agenda breve",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "dccef52c680e4b8fb04778c36ac0bb85",
+    "utc": "2026-11-26T02:38:45.571640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0173,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0351,
+        "ms": 0.0197
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0593,
+        "herramienta": "listar_tareas",
+        "ms": 0.3059
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3792,
+        "ms": 0.0103
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3962,
+    "cpu_ms": 0.0,
+    "caso": "agenda breve",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "0bb7027d5b624bb59b0d6e2c1c5324c4",
+    "utc": "2026-11-26T02:38:45.571640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0171,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0336,
+        "ms": 0.0198
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0579,
+        "herramienta": "listar_tareas",
+        "ms": 0.3226
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3946,
+        "ms": 0.0101
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.4107,
+    "cpu_ms": 0.0,
+    "caso": "agenda breve",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "b05f9036537849a28f917b8e210f4902",
+    "utc": "2026-11-26T02:38:45.572643+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0153,
+        "ms": 0.0025
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0314,
+        "ms": 0.0162
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0517,
+        "herramienta": "listar_tareas",
+        "ms": 0.31
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.376,
+        "ms": 0.0103
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3927,
+    "cpu_ms": 0.0,
+    "caso": "agenda breve",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "c57132e51600463e812dadf90d2dc1ae",
+    "utc": "2026-11-26T02:38:45.573641+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0165,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0339,
+        "ms": 0.0165
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0547,
+        "herramienta": "listar_tareas",
+        "ms": 0.3391
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4088,
+        "ms": 0.0104
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.426,
+    "cpu_ms": 0.0,
+    "caso": "agenda breve",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "f65ab240e4fc4283ae1b5ce45f2823d6",
+    "utc": "2026-11-26T02:38:45.574610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0168,
+        "ms": 0.0031
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0351,
+        "ms": 0.0207
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0605,
+        "herramienta": "listar_tareas",
+        "ms": 0.6569
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.7342,
+        "ms": 0.0112
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.7526,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "187fb4249e934c57baa3e48607ee25fa",
+    "utc": "2026-11-26T02:38:45.576639+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0161,
+        "ms": 0.0032
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.033,
+        "ms": 0.0733
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.1122,
+        "herramienta": "listar_tareas",
+        "ms": 0.6668
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.7945,
+        "ms": 0.0106
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.8125,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "efe5adb24e174bfc94c992b3d1337b21",
+    "utc": "2026-11-26T02:38:45.578645+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0156,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0352,
+        "ms": 0.0186
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0598,
+        "herramienta": "listar_tareas",
+        "ms": 0.7013
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.7814,
+        "ms": 0.0127
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.8021,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "5b54ef8d3cfd4ad1830437fdb29552bc",
+    "utc": "2026-11-26T02:38:45.581641+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0225,
+        "ms": 0.0039
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.048,
+        "ms": 0.0218
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0749,
+        "herramienta": "listar_tareas",
+        "ms": 0.7658
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.8578,
+        "ms": 0.0199
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.8851,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "2646a578613c4d88a831ece1079bd450",
+    "utc": "2026-11-26T02:38:45.583640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0194,
+        "ms": 0.0033
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0379,
+        "ms": 0.0184
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0606,
+        "herramienta": "listar_tareas",
+        "ms": 0.6179
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.6984,
+        "ms": 0.0108
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.7179,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "2934ae5826614c1a8a8f26e752f83fa6",
+    "utc": "2026-11-26T02:38:45.585614+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0218,
+        "ms": 0.0046
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.051,
+        "ms": 0.0247
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0809,
+        "herramienta": "listar_tareas",
+        "ms": 0.8117
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.9109,
+        "ms": 0.0133
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.9325,
+    "cpu_ms": 0.0,
+    "caso": "agenda extensa",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "8c327bb185fe4dae9c2cba8c0d37a460",
+    "utc": "2026-11-26T02:38:45.586609+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.017,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0355,
+        "ms": 0.0178
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0576,
+        "herramienta": "planificar_semana",
+        "ms": 2.5487
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 2.6282,
+        "ms": 0.012
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 2.6479,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "ec2033dd097e4e28856faf5d2667a3eb",
+    "utc": "2026-11-26T02:38:45.589607+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0179,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0382,
+        "ms": 0.0204
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0631,
+        "herramienta": "planificar_semana",
+        "ms": 0.3887
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4752,
+        "ms": 0.0108
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.4931,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "245d597cf7834ad5b6451dd5b8ddb578",
+    "utc": "2026-11-26T02:38:45.590640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0179,
+        "ms": 0.0031
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0379,
+        "ms": 0.0198
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0621,
+        "herramienta": "planificar_semana",
+        "ms": 0.3912
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4682,
+        "ms": 0.0108
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.4865,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "6524b352fb8745598c4103030ab810ea",
+    "utc": "2026-11-26T02:38:45.591612+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.016,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0325,
+        "ms": 0.0173
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0545,
+        "herramienta": "planificar_semana",
+        "ms": 0.3143
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3818,
+        "ms": 0.0098
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3979,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "eb868f1c7e65428cb2946a9b9a53342a",
+    "utc": "2026-11-26T02:38:45.592641+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0164,
+        "ms": 0.0032
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0353,
+        "ms": 0.0196
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0594,
+        "herramienta": "planificar_semana",
+        "ms": 0.3277
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4009,
+        "ms": 0.0103
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.418,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "bc39015836b04199bb22e4216b29622d",
+    "utc": "2026-11-26T02:38:45.593640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0157,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0393,
+        "ms": 0.0164
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.06,
+        "herramienta": "planificar_semana",
+        "ms": 0.3133
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3864,
+        "ms": 0.0101
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.4031,
+    "cpu_ms": 0.0,
+    "caso": "prioridad",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "de79bdc979ee4f37b50258b74c175fff",
+    "utc": "2026-11-26T02:38:45.593640+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0157,
+        "ms": 0.0024
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0307,
+        "ms": 0.0163
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.051,
+        "herramienta": "mover_tarea",
+        "ms": 0.4796
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.5456,
+        "ms": 0.015
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.5647,
+        "herramienta": "planificar_semana",
+        "ms": 0.2967
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.875,
+        "ms": 0.01
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.8923,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "f902a9aa75d74369a8beb5b5f0018b67",
+    "utc": "2026-11-26T02:38:45.595642+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0152,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0319,
+        "ms": 0.0165
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0526,
+        "herramienta": "mover_tarea",
+        "ms": 0.3406
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4071,
+        "ms": 0.0144
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4252,
+        "herramienta": "planificar_semana",
+        "ms": 0.3479
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7874,
+        "ms": 0.0104
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.8054,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "bbff7c261b7f47ed931fb51aeb452452",
+    "utc": "2026-11-26T02:38:45.596610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0167,
+        "ms": 0.003
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.035,
+        "ms": 0.0192
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0586,
+        "herramienta": "mover_tarea",
+        "ms": 0.3609
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4335,
+        "ms": 0.0149
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4523,
+        "herramienta": "planificar_semana",
+        "ms": 0.3196
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7919,
+        "ms": 0.0101
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.8098,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "79c6595b6bf9439191dc063d597727eb",
+    "utc": "2026-11-26T02:38:45.597610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0152,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0322,
+        "ms": 0.0176
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0541,
+        "herramienta": "mover_tarea",
+        "ms": 0.344
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4118,
+        "ms": 0.0272
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.443,
+        "herramienta": "planificar_semana",
+        "ms": 0.306
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7629,
+        "ms": 0.0102
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.7802,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "dc19001f9c744995ad58d518eb770b16",
+    "utc": "2026-11-26T02:38:45.598609+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0152,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0313,
+        "ms": 0.0168
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0523,
+        "herramienta": "mover_tarea",
+        "ms": 0.3685
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.435,
+        "ms": 0.0153
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4542,
+        "herramienta": "planificar_semana",
+        "ms": 0.3142
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7818,
+        "ms": 0.0101
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.7992,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "e6d100511a2d48859b52330e78f93ff3",
+    "utc": "2026-11-26T02:38:45.599607+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.016,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0338,
+        "ms": 0.0183
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0562,
+        "herramienta": "mover_tarea",
+        "ms": 0.35
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4198,
+        "ms": 0.0146
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4383,
+        "herramienta": "planificar_semana",
+        "ms": 0.3014
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7527,
+        "ms": 0.0103
+      }
+    ],
+    "tokens": null,
+    "pasos": 3,
+    "ms": 0.7707,
+    "cpu_ms": 0.0,
+    "caso": "cerrar y planificar",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "07109636828747a8bf8c56fdee2933ce",
+    "utc": "2026-11-26T02:38:45.600608+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0154,
+        "ms": 0.0023
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.032,
+        "ms": 0.008
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0678,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "3c0179787c284379bbd07988789075bf",
+    "utc": "2026-11-26T02:38:45.601608+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0175,
+        "ms": 0.003
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0363,
+        "ms": 0.009
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0517,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "2b6544426cf044579e3b0ff97c9a9d0a",
+    "utc": "2026-11-26T02:38:45.602610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0227,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0393,
+        "ms": 0.0088
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0542,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 1,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "c789f53a0b3f4f3e9e230c5fb262202d",
+    "utc": "2026-11-26T02:38:45.602610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0147,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0307,
+        "ms": 0.0082
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0445,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "8690b726bbb5498399eaeff957ee0696",
+    "utc": "2026-11-26T02:38:45.602610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0135,
+        "ms": 0.0023
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0273,
+        "ms": 0.0072
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0399,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "9da1835206cc4bb49e251e537a19bc8d",
+    "utc": "2026-11-26T02:38:45.602610+00:00",
+    "estado": "ok",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0143,
+        "ms": 0.0025
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0293,
+        "ms": 0.0076
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.042,
+    "cpu_ms": 0.0,
+    "caso": "falta fecha",
+    "variante": 2,
+    "evaluada": true,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "a5dd8f48c58f439887aa5f4a6f6e7520",
+    "utc": "2026-11-26T02:38:45.603641+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0146,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0309,
+        "ms": 0.0186
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0541,
+        "herramienta": "listar_tareas",
+        "ms": 0.301
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3717,
+        "ms": 0.0083
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3857,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "a1521bde1af54f639fc8d81fc06852ac",
+    "utc": "2026-11-26T02:38:45.604607+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0156,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0323,
+        "ms": 0.0165
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.053,
+        "herramienta": "listar_tareas",
+        "ms": 0.2503
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3174,
+        "ms": 0.0076
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3297,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "89d6631958c34db39e507e8ff9f61cc8",
+    "utc": "2026-11-26T02:38:45.605607+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0159,
+        "ms": 0.003
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0333,
+        "ms": 0.017
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0547,
+        "herramienta": "listar_tareas",
+        "ms": 0.2572
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3267,
+        "ms": 0.0081
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.34,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "83ca9ef92ef04b0482e58d0cd89e7d2b",
+    "utc": "2026-11-26T02:38:45.605607+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.015,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0306,
+        "ms": 0.0159
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0504,
+        "herramienta": "listar_tareas",
+        "ms": 0.2546
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3191,
+        "ms": 0.0077
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3316,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "23dfe9d65eaa4a50b1fdb3f9d94730bb",
+    "utc": "2026-11-26T02:38:45.606608+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0156,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0323,
+        "ms": 0.0165
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.053,
+        "herramienta": "listar_tareas",
+        "ms": 0.2815
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3568,
+        "ms": 0.0225
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3862,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "c306af72283c44c8ba2126929bb20fb8",
+    "utc": "2026-11-26T02:38:45.607612+00:00",
+    "estado": "degradado",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0169,
+        "ms": 0.003
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0358,
+        "ms": 0.0184
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0582,
+        "herramienta": "listar_tareas",
+        "ms": 0.3122
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3852,
+        "ms": 0.008
+      }
+    ],
+    "tokens": null,
+    "pasos": 2,
+    "ms": 0.3982,
+    "cpu_ms": 0.0,
+    "caso": "fallo de herramienta",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "8c501023b6ed4b85b6fa0119f3369368",
+    "utc": "2026-11-26T02:38:45.608610+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0157,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0311,
+        "ms": 0.0228
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0576,
+        "herramienta": "listar_tareas",
+        "ms": 0.2977
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3685,
+        "ms": 0.0143
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3864,
+        "herramienta": "listar_tareas",
+        "ms": 0.2697
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.669,
+        "ms": 0.0145
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6872,
+        "herramienta": "listar_tareas",
+        "ms": 0.2994
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 0.9991,
+        "ms": 0.014
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.0168,
+        "herramienta": "listar_tareas",
+        "ms": 0.267
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.2963,
+        "ms": 0.0134
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.3134,
+        "herramienta": "listar_tareas",
+        "ms": 0.2559
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.5863,
+    "cpu_ms": 15.625,
+    "caso": "límite de pasos",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "7d6797871fcb46d2806695db30050dbd",
+    "utc": "2026-11-26T02:38:45.610607+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0168,
+        "ms": 0.0029
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0409,
+        "ms": 0.0162
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0612,
+        "herramienta": "listar_tareas",
+        "ms": 0.3028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3777,
+        "ms": 0.0143
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3959,
+        "herramienta": "listar_tareas",
+        "ms": 0.2732
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6822,
+        "ms": 0.0139
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6997,
+        "herramienta": "listar_tareas",
+        "ms": 0.2777
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 0.9907,
+        "ms": 0.0143
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.009,
+        "herramienta": "listar_tareas",
+        "ms": 0.2771
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.2985,
+        "ms": 0.0138
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.316,
+        "herramienta": "listar_tareas",
+        "ms": 0.2603
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.5937,
+    "cpu_ms": 0.0,
+    "caso": "límite de pasos",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "a7262248c5df4526b32f21f845dce638",
+    "utc": "2026-11-26T02:38:45.611608+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0154,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0313,
+        "ms": 0.0171
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0525,
+        "herramienta": "listar_tareas",
+        "ms": 0.3881
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4552,
+        "ms": 0.0153
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4746,
+        "herramienta": "listar_tareas",
+        "ms": 0.3091
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.7974,
+        "ms": 0.0148
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.8163,
+        "herramienta": "listar_tareas",
+        "ms": 0.3144
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.1445,
+        "ms": 0.0143
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.1747,
+        "herramienta": "listar_tareas",
+        "ms": 0.3085
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.4982,
+        "ms": 0.0152
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.5174,
+        "herramienta": "listar_tareas",
+        "ms": 0.2804
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.8192,
+    "cpu_ms": 0.0,
+    "caso": "límite de pasos",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "748a44205fa44a7fa003aac4b95302db",
+    "utc": "2026-11-26T02:38:45.614625+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0202,
+        "ms": 0.0031
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0391,
+        "ms": 0.0158
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0587,
+        "herramienta": "listar_tareas",
+        "ms": 0.2895
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3621,
+        "ms": 0.0149
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.381,
+        "herramienta": "listar_tareas",
+        "ms": 0.2642
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6582,
+        "ms": 0.0136
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6758,
+        "herramienta": "listar_tareas",
+        "ms": 0.3065
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 0.9944,
+        "ms": 0.0133
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.0115,
+        "herramienta": "listar_tareas",
+        "ms": 0.2506
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.274,
+        "ms": 0.0133
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.2912,
+        "herramienta": "listar_tareas",
+        "ms": 0.2442
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.5527,
+    "cpu_ms": 0.0,
+    "caso": "límite de pasos",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "e4f1a5ea28ac4e9499c3814b4812f115",
+    "utc": "2026-11-26T02:38:45.616607+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0153,
+        "ms": 0.0028
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0317,
+        "ms": 0.0162
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.052,
+        "herramienta": "listar_tareas",
+        "ms": 0.2981
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3636,
+        "ms": 0.0147
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.3823,
+        "herramienta": "listar_tareas",
+        "ms": 0.2745
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6697,
+        "ms": 0.0147
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.6883,
+        "herramienta": "listar_tareas",
+        "ms": 0.2631
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.0041,
+        "ms": 0.0235
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.034,
+        "herramienta": "listar_tareas",
+        "ms": 0.2956
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.3437,
+        "ms": 0.0152
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.363,
+        "herramienta": "listar_tareas",
+        "ms": 0.2847
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.6768,
+    "cpu_ms": 0.0,
+    "caso": "límite de pasos",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "26782f8995e049afa0e3be5263251417",
+    "utc": "2026-11-26T02:38:45.618609+00:00",
+    "estado": "limite",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0182,
+        "ms": 0.0032
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.037,
+        "ms": 0.0303
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 1,
+        "estado": "ok",
+        "inicio_ms": 0.0719,
+        "herramienta": "listar_tareas",
+        "ms": 0.3884
+      },
+      {
+        "etapa": "modelo",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4761,
+        "ms": 0.0159
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 2,
+        "estado": "ok",
+        "inicio_ms": 0.4962,
+        "herramienta": "listar_tareas",
+        "ms": 0.3168
+      },
+      {
+        "etapa": "modelo",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.8264,
+        "ms": 0.0143
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 3,
+        "estado": "ok",
+        "inicio_ms": 0.8445,
+        "herramienta": "listar_tareas",
+        "ms": 0.2886
+      },
+      {
+        "etapa": "modelo",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.1458,
+        "ms": 0.0138
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 4,
+        "estado": "ok",
+        "inicio_ms": 1.1635,
+        "herramienta": "listar_tareas",
+        "ms": 0.2541
+      },
+      {
+        "etapa": "modelo",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.43,
+        "ms": 0.0135
+      },
+      {
+        "etapa": "herramienta",
+        "paso": 5,
+        "estado": "ok",
+        "inicio_ms": 1.4473,
+        "herramienta": "listar_tareas",
+        "ms": 0.2532
+      }
+    ],
+    "tokens": null,
+    "pasos": 5,
+    "ms": 1.7191,
+    "cpu_ms": 0.0,
+    "caso": "límite de pasos",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "d8ca3ba2b74c4236a8fe37a1e3052b5b",
+    "utc": "2026-11-26T02:38:45.620639+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0174,
+        "ms": 0.0027
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0343,
+        "ms": 0.0068
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0458,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "36257a9248c444748f62cc4866b2a7c0",
+    "utc": "2026-11-26T02:38:45.620639+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0149,
+        "ms": 0.0024
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0305,
+        "ms": 0.0048
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0391,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "895496b2ce83491a895af392b8f34686",
+    "utc": "2026-11-26T02:38:45.620639+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0132,
+        "ms": 0.0024
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0277,
+        "ms": 0.0037
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0344,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 1,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "aece5257249248e79f0bb377f44bd7e0",
+    "utc": "2026-11-26T02:38:45.621607+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0145,
+        "ms": 0.0026
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0303,
+        "ms": 0.004
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0373,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "bc035c10593c48f1a38a02907249bbd9",
+    "utc": "2026-11-26T02:38:45.621607+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0134,
+        "ms": 0.0025
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0286,
+        "ms": 0.0037
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0351,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  },
+  {
+    "id": "38f28e6fc0d64123b9d5ed30619f5bda",
+    "utc": "2026-11-26T02:38:45.621607+00:00",
+    "estado": "error",
+    "eventos": [
+      {
+        "etapa": "memoria",
+        "paso": 0,
+        "estado": "ok",
+        "inicio_ms": 0.0128,
+        "ms": 0.0025
+      },
+      {
+        "etapa": "modelo",
+        "paso": 1,
+        "estado": "timeout",
+        "inicio_ms": 0.0279,
+        "ms": 0.0037
+      }
+    ],
+    "tokens": null,
+    "pasos": 1,
+    "ms": 0.0345,
+    "cpu_ms": 0.0,
+    "caso": "caída de modelo",
+    "variante": 2,
+    "evaluada": null,
+    "origen": "Banco controlado"
+  }
+]
